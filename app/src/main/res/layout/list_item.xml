@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="95dp"
+    android:clickable="true"
+    android:elevation="6dp"
+    android:focusable="true"
+    android:foreground="@drawable/bg_control_square"
+    app:cardCornerRadius="6dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/avatarImageView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/image_avatar"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/nameLabel"
+            style="@style/LabelTextViewStyle"
+            android:layout_marginTop="8dp"
+            android:text="@string/label_name"
+            app:layout_constraintStart_toEndOf="@+id/avatarImageView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/nameTextView"
+            style="@style/ValueTextStyle"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/nameLabel"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/placeholder_name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/ownerLabel"
+            style="@style/LabelTextViewStyle"
+            android:text="@string/label_owner"
+            app:layout_constraintBottom_toTopOf="@+id/forkImage"
+            app:layout_constraintStart_toEndOf="@+id/avatarImageView"
+            app:layout_constraintTop_toBottomOf="@+id/nameLabel" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/ownerTextView"
+            style="@style/ValueTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/forkTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ownerLabel"
+            app:layout_constraintTop_toBottomOf="@+id/nameTextView"
+            tools:text="@string/app_name" />
+
+        <ImageView
+            android:id="@+id/forkImage"
+            style="@style/SmallImageStyle"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@string/image_fork"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/avatarImageView"
+            app:srcCompat="@drawable/ic_fork" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/forkTextView"
+            style="@style/CaptionTextViewStyle"
+            app:layout_constraintBottom_toBottomOf="@+id/forkImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/forkImage"
+            app:layout_constraintTop_toTopOf="@+id/forkImage"
+            tools:text="@string/placeholder_fork" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

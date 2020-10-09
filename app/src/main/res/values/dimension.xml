@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="message_title_size">22sp</dimen>
+    <dimen name="message_description_size">18sp</dimen>
+    <dimen name="message_image_size">60dp</dimen>
+</resources>
