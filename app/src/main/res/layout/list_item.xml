@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="95dp"
-    android:clickable="true"
     android:elevation="6dp"
+    android:clickable="true"
     android:focusable="true"
     android:foreground="@drawable/bg_control_square"
     app:cardCornerRadius="6dp">
@@ -67,7 +68,7 @@
             android:id="@+id/forkImage"
             style="@style/SmallImageStyle"
             android:layout_marginBottom="8dp"
-            android:contentDescription="@string/image_fork"
+            android:contentDescription="@string/image_forks"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/avatarImageView"
             app:srcCompat="@drawable/ic_fork" />

@@ -5,13 +5,17 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:padding="15dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@android:color/white">
 
     <ImageView
+        android:id="@+id/test"
         android:layout_width="@dimen/message_image_size"
         android:layout_height="@dimen/message_image_size"
         android:src="@drawable/ic_no_database"
-        android:contentDescription="@string/image_no_connection"/>
+        android:contentDescription="@string/image_no_connection"
+        android:clickable="true"
+        android:focusable="true"/>
 
     <TextView
         android:text="@string/label_no_cache"
