@@ -1,130 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.cardview.widget.CardView
+    <data>
+        <variable
+            name="viewModel"
+            type="com.clp3z.xapotestapp.viewmodel.RepositoryViewModel" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="6dp"
-        app:cardCornerRadius="6dp">
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp">
+            android:layout_height="wrap_content"
+            android:elevation="6dp"
+            app:cardCornerRadius="6dp">
 
-            <com.clp3z.xapotestapp.view.CircleImageView
-                android:id="@+id/avatarImageView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                tools:src="@drawable/ic_android"
-                app:border_color="@color/colorAccent"
-                app:border_width="2dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp">
 
-            <ImageView
-                android:id="@+id/forkImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintBottom_toTopOf="@+id/forksTextView"
-                app:layout_constraintEnd_toEndOf="@+id/forksTextView"
-                app:layout_constraintStart_toStartOf="@+id/forksTextView"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionTextView"
-                app:srcCompat="@drawable/ic_fork"
-                android:contentDescription="@string/image_forks" />
+                <com.clp3z.xapotestapp.view.CircleImageView
+                    android:id="@+id/avatarImageView"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    tools:src="@drawable/ic_android"
+                    app:border_color="@color/colorAccent"
+                    app:border_width="2dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/watchersImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintBottom_toTopOf="@+id/watchersTextView"
-                app:layout_constraintEnd_toEndOf="@+id/watchersTextView"
-                app:layout_constraintStart_toStartOf="@+id/watchersTextView"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionTextView"
-                app:srcCompat="@drawable/ic_watcher"
-                android:contentDescription="@string/image_watchers" />
+                <ImageView
+                    android:id="@+id/forkImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintBottom_toTopOf="@+id/forksTextView"
+                    app:layout_constraintEnd_toEndOf="@+id/forksTextView"
+                    app:layout_constraintStart_toStartOf="@+id/forksTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/descriptionTextView"
+                    app:srcCompat="@drawable/ic_fork"
+                    android:contentDescription="@string/image_forks" />
 
-            <ImageView
-                android:id="@+id/issuesImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintBottom_toTopOf="@+id/issuesTextView"
-                app:layout_constraintEnd_toEndOf="@+id/issuesTextView"
-                app:layout_constraintStart_toStartOf="@+id/issuesTextView"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionTextView"
-                app:srcCompat="@drawable/ic_issue"
-                android:contentDescription="@string/image_issues" />
+                <ImageView
+                    android:id="@+id/watchersImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintBottom_toTopOf="@+id/watchersTextView"
+                    app:layout_constraintEnd_toEndOf="@+id/watchersTextView"
+                    app:layout_constraintStart_toStartOf="@+id/watchersTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/descriptionTextView"
+                    app:srcCompat="@drawable/ic_watcher"
+                    android:contentDescription="@string/image_watchers" />
 
-            <TextView
-                android:id="@+id/nameTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                tools:text="@string/placeholder_name"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/avatarImageView" />
+                <ImageView
+                    android:id="@+id/issuesImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintBottom_toTopOf="@+id/issuesTextView"
+                    app:layout_constraintEnd_toEndOf="@+id/issuesTextView"
+                    app:layout_constraintStart_toStartOf="@+id/issuesTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/descriptionTextView"
+                    app:srcCompat="@drawable/ic_issue"
+                    android:contentDescription="@string/image_issues" />
 
-            <TextView
-                android:id="@+id/descriptionTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                tools:text="@string/placeholder_description"
-                android:textAlignment="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
+                <TextView
+                    android:id="@+id/nameTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    tools:text="@string/placeholder_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/avatarImageView" />
 
-            <TextView
-                android:id="@+id/forksTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                tools:text="10400"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/watchersTextView"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/forkImage" />
+                <TextView
+                    android:id="@+id/descriptionTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    tools:text="@string/placeholder_description"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
 
-            <TextView
-                android:id="@+id/watchersTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                tools:text="2678"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/issuesTextView"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/forksTextView"
-                app:layout_constraintTop_toBottomOf="@+id/watchersImage" />
+                <TextView
+                    android:id="@+id/forksTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    tools:text="10400"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/watchersTextView"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/forkImage" />
 
-            <TextView
-                android:id="@+id/issuesTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                tools:text="148"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/watchersTextView"
-                app:layout_constraintTop_toBottomOf="@+id/issuesImage" />
+                <TextView
+                    android:id="@+id/watchersTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    tools:text="2678"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/issuesTextView"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/forksTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/watchersImage" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/issuesTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    tools:text="148"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/watchersTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/issuesImage" />
 
-    </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</layout>

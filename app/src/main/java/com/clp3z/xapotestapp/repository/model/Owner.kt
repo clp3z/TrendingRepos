@@ -8,17 +8,17 @@ import com.google.gson.annotations.SerializedName
 /**
  * Created by Clelia López on 10/9/20
  */
-@Entity(tableName = "contributor_table")
-data class Contributor (
+@Entity(tableName = "owner_table")
+data class Owner (
 
     @PrimaryKey
-    val id: Int,
+    var id: Int,
 
     @ColumnInfo
     @SerializedName("avatar_url")
-    val avatar: String,
+    var avatar: String,
 
     @ColumnInfo
     @SerializedName("html_url")
-    val url: String
+    var url: String
 )

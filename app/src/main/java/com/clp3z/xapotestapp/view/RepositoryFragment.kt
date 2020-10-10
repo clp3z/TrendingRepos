@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.clp3z.xapotestapp.databinding.FragmentRepositoryBinding
+import com.clp3z.xapotestapp.viewmodel.RepositoryViewModel
+import com.clp3z.xapotestapp.viewmodel.RepositoryViewModelFactory
 
 /**
  * Created by Clelia López on 10/9/20
@@ -13,13 +16,13 @@ import com.clp3z.xapotestapp.databinding.FragmentRepositoryBinding
 class RepositoryFragment: Fragment() {
 
     private lateinit var binding: FragmentRepositoryBinding
-    //private lateinit var gameViewModel:GameViewModel
+    private lateinit var viewModel:RepositoryViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?)
-    : View? {
+        savedInstanceState: Bundle?
+    ): View? {
 
         binding = FragmentRepositoryBinding.inflate(inflater, container, false)
 
@@ -29,6 +32,11 @@ class RepositoryFragment: Fragment() {
     }
 
     private fun initializeViewModel() {
+        val id = 0 // TODO get from safeargs
+        val viewModelFactory = RepositoryViewModelFactory(id)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(RepositoryViewModel::class.java)
 
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
     }
 }

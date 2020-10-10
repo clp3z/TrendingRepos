@@ -1,22 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="@android:color/white">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <data>
+        <variable
+            name="viewModel"
+            type="com.clp3z.xapotestapp.viewmodel.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:background="@android:color/white">
 
-    <include
-        android:id="@+id/message_no_connection"
-        layout="@layout/message_no_connection"
-        android:visibility="invisible"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-    <include
-        android:id="@+id/message_no_database"
-        layout="@layout/message_no_database"/>
+        <include
+            android:id="@+id/message_no_connection"
+            layout="@layout/message_no_connection"
+            android:visibility="invisible"
+            tools:viewBindingIgnore="true"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <include
+            android:id="@+id/message_no_database"
+            layout="@layout/message_no_database"
+            tools:viewBindingIgnore="true"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

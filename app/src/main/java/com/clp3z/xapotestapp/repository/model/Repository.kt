@@ -12,51 +12,51 @@ import com.google.gson.annotations.SerializedName
 data class Repository (
 
     @PrimaryKey
-    val id: Int,
+    var id: Int,
 
     @ColumnInfo
     @SerializedName("full_name")
-    val name: String,
+    var name: String,
 
     @ColumnInfo
-    val description: String,
+    var description: String,
 
     @ColumnInfo
-    val owner: Contributor,
+    var owner: Owner,
 
     @ColumnInfo
-    val forks: Int,
+    var forks: Int,
 
     @ColumnInfo
     @SerializedName("open_issues")
-    val issues: Int,
+    var issues: Int,
 
     @ColumnInfo
-    val watchers: Int,
+    var watchers: Int,
 
     @ColumnInfo
     @SerializedName("created_at")
-    val created: String,
+    var created: String,
 
     @ColumnInfo
     @SerializedName("updated_at")
-    val updated: String,
+    var updated: String,
 
     @ColumnInfo
     @SerializedName("pushed_at")
-    val pushed: String,
+    var pushed: String,
 
     @ColumnInfo
-    val size: Int,
+    var size: Int,
 
     @ColumnInfo
-    val language: String,
+    var language: String,
 
     @ColumnInfo
     @SerializedName("html_url")
-    val url: String,
+    var url: String,
 
     @ColumnInfo
     @SerializedName("contributors_url")
-    val contributorsUrl: String
+    var contributorsUrl: String
 )

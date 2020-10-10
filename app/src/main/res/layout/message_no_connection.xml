@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:padding="15dp"
-    android:orientation="vertical"
-    android:background="@android:color/white">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ImageView
-        android:layout_width="@dimen/message_image_size"
-        android:layout_height="@dimen/message_image_size"
-        android:src="@drawable/ic_no_connection"
-        android:contentDescription="@string/image_no_connection"/>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="15dp"
+        android:orientation="vertical"
+        android:background="@android:color/white">
 
-    <TextView
-        android:text="@string/label_no_connection"
-        style="@style/TitleTextViewStyle"/>
+        <ImageView
+            android:layout_width="@dimen/message_image_size"
+            android:layout_height="@dimen/message_image_size"
+            android:src="@drawable/ic_no_connection"
+            android:contentDescription="@string/image_no_connection"/>
 
-    <TextView
-        android:text="@string/label_please_check"
-        style="@style/SubtitleTextViewStyle" />
+        <TextView
+            android:text="@string/label_no_connection"
+            style="@style/TitleTextViewStyle"/>
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+        <TextView
+            android:text="@string/label_please_check"
+            style="@style/SubtitleTextViewStyle" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</layout>

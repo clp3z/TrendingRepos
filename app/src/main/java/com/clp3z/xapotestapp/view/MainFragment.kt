@@ -5,9 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.clp3z.xapotestapp.R
 import com.clp3z.xapotestapp.databinding.FragmentMainBinding
+import com.clp3z.xapotestapp.repository.database.LocalDatabase
+import com.clp3z.xapotestapp.viewmodel.MainViewModel
+import com.clp3z.xapotestapp.viewmodel.MainViewModelFactory
 
 /**
  * Created by Clelia López on 10/9/20
@@ -15,13 +19,13 @@ import com.clp3z.xapotestapp.databinding.FragmentMainBinding
 class MainFragment: Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentMainBinding
-    //private lateinit var gameViewModel:GameViewModel
+    private lateinit var viewModel:MainViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?)
-    : View? {
+        savedInstanceState: Bundle?
+    ): View? {
 
         binding = FragmentMainBinding.inflate(inflater, container, false)
 
@@ -33,11 +37,17 @@ class MainFragment: Fragment(), View.OnClickListener {
     }
 
     private fun initializeViewModel() {
+        val application = requireActivity().application
+        val dataSource = LocalDatabase.getInstance(application).databaseDao
+        val viewModelFactory = MainViewModelFactory(dataSource)
+        viewModel =  ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
     }
 
     override fun onClick(view: View) {
         view.findNavController().navigate(R.id.action_mainFragment_to_repositoryFragment)
-        view.findNavController().navigate(MainFragmentDirections.actionMainFragmentToRepositoryFragment())
+        // view.findNavController().navigate(MainFragmentDirections.actionMainFragmentToRepositoryFragment())
     }
 }
