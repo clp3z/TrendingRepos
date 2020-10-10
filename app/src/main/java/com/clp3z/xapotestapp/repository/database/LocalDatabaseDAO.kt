@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.clp3z.xapotestapp.repository.model.Owner
 import com.clp3z.xapotestapp.repository.model.Repository
 
 /**
@@ -21,10 +20,4 @@ interface LocalDatabaseDAO {
 
     @Query("SELECT * FROM repository_table")
     fun getRepositories(): LiveData<List<Repository>>
-
-    @Query("SELECT * FROM owner_table WHERE id= :id")
-    fun getRepositoryContributors(id: Int): LiveData<List<Owner>>
-
-    @Insert
-    fun insert(contributor: Owner)
 }

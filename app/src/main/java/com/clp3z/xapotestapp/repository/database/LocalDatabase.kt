@@ -14,7 +14,7 @@ import com.clp3z.xapotestapp.repository.model.Repository
 
 const val DATABASE_NAME = "local_database"
 
-@Database(entities = [Repository::class, Owner::class], version = 1,  exportSchema = false)
+@Database(entities = [Repository::class], version = 1,  exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class LocalDatabase : RoomDatabase() {
 

@@ -38,8 +38,8 @@ class MainFragment: Fragment(), View.OnClickListener {
 
     private fun initializeViewModel() {
         val application = requireActivity().application
-        val dataSource = LocalDatabase.getInstance(application).databaseDao
-        val viewModelFactory = MainViewModelFactory(dataSource)
+        val database = LocalDatabase.getInstance(application).databaseDao
+        val viewModelFactory = MainViewModelFactory(database, application)
         viewModel =  ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 
         binding.lifecycleOwner = this

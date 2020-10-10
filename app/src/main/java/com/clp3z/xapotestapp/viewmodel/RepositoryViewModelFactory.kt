@@ -18,18 +18,22 @@ package com.clp3z.xapotestapp.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.clp3z.xapotestapp.repository.database.LocalDatabaseDAO
 
 /**
  * Created by Clelia López on 10/10/20
  */
 // TODO: optimize into one class
-class RepositoryViewModelFactory(private val id: Int)
+class RepositoryViewModelFactory(
+    private val database: LocalDatabaseDAO,
+    private val id: Int
+)
     : ViewModelProvider.Factory {
 
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(RepositoryViewModel::class.java)) {
-            return RepositoryViewModel(id) as T
+            return RepositoryViewModel(database, id) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

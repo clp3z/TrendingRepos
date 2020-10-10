@@ -11,7 +11,7 @@ import com.clp3z.xapotestapp.databinding.ActivityMainBinding
 /**
  * Created by Clelia López on 10/9/20
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity: AppCompatActivity() {
 
     private lateinit var navController: NavController
     private lateinit var binding: ActivityMainBinding

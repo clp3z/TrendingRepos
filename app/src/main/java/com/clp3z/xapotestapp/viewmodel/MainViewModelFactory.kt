@@ -16,6 +16,7 @@
 
 package com.clp3z.xapotestapp.viewmodel
 
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.clp3z.xapotestapp.repository.database.LocalDatabaseDAO
@@ -24,13 +25,16 @@ import com.clp3z.xapotestapp.repository.database.LocalDatabaseDAO
  * Created by Clelia López on 10/10/20
  */
 // TODO: optimize into one class
-class MainViewModelFactory(private val dataSource: LocalDatabaseDAO)
+class MainViewModelFactory(
+    private val database: LocalDatabaseDAO,
+    private val application: Application
+)
     : ViewModelProvider.Factory {
 
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-            return MainViewModel(dataSource) as T
+            return MainViewModel(database, application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

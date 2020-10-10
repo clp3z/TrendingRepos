@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.clp3z.xapotestapp.databinding.FragmentRepositoryBinding
+import com.clp3z.xapotestapp.repository.database.LocalDatabase
 import com.clp3z.xapotestapp.viewmodel.RepositoryViewModel
 import com.clp3z.xapotestapp.viewmodel.RepositoryViewModelFactory
 
@@ -33,7 +34,9 @@ class RepositoryFragment: Fragment() {
 
     private fun initializeViewModel() {
         val id = 0 // TODO get from safeargs
-        val viewModelFactory = RepositoryViewModelFactory(id)
+        val application = requireActivity().application
+        val database = LocalDatabase.getInstance(application).databaseDao
+        val viewModelFactory = RepositoryViewModelFactory(database, id)
         viewModel = ViewModelProvider(this, viewModelFactory).get(RepositoryViewModel::class.java)
 
         binding.lifecycleOwner = this

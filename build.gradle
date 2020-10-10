@@ -11,7 +11,7 @@ buildscript {
         coroutine_version = "1.3.7"
         constraint_layout_version = "2.0.2"
         lifecycle_extensions_version = "2.2.0"
-        navigation_version = '1.0.0'
+        navigation_version = "1.0.0"
         room_version = "2.2.5"
 
         // Testing
@@ -20,12 +20,13 @@ buildscript {
         expresso_version = "3.3.0"
 
         // Not used yet, consider for deletion if never used
-        retrofit_version = '2.6.2'
-        gson_converter_version = '2.6.2'
-        gson_version = '2.6.1'
-        glide_version = '4.5.0'
-        glide_annotation_version = '4.5.0'
-        circle_image_version = '2.1.0'
+        retrofit_version = "2.6.2"
+        gson_converter_version = "2.6.2"
+        gson_version = "2.6.1"
+        okhttp_version = "3.12.0"
+        glide_version = "4.5.0"
+        glide_annotation_version = "4.5.0"
+        circle_image_version = "2.1.0"
     }
 
     repositories {
