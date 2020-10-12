@@ -38,7 +38,10 @@ class RepositoryViewModel(
 
     private fun fetch() {
         uiScope.launch {
-            _repository.value = getRepositoryById()
+            _repository.value =
+                withContext(Dispatchers.IO) {
+                    database.get(id)
+                }
         }
     }
 

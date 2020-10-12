@@ -1,4 +1,4 @@
-package com.clp3z.bottlerocket.base.network
+package com.clp3z.xapotestapp.base.network
 
 import com.clp3z.xapotestapp.repository.network.RepositoriesResponse
 import retrofit2.Call

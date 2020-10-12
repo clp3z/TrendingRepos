@@ -1,8 +1,8 @@
 package com.clp3z.xapotestapp.repository.network
 
-import com.clp3z.bottlerocket.base.network.Client
 import com.clp3z.xapotestapp.base.Listener
 import com.clp3z.xapotestapp.base.Logger
+import com.clp3z.xapotestapp.base.network.Client
 
 /**
  * Created by Clelia López on 10/10/20

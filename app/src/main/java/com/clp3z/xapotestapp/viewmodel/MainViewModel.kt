@@ -23,7 +23,6 @@ class MainViewModel(
 ):
     AndroidViewModel(app), Listener.OnServerResponseListener<RepositoriesResponse> {
 
-    // TODO: fetch() gain on scroll
     // TODO: handle onItemSelected on adapter
 
     /**

@@ -1,4 +1,4 @@
-package com.clp3z.bottlerocket.base.network
+package com.clp3z.xapotestapp.base.network
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.clp3z.xapotestapp.base.ModelState
 import com.clp3z.xapotestapp.databinding.FragmentMainBinding
 import com.clp3z.xapotestapp.repository.database.LocalDatabase
 import com.clp3z.xapotestapp.view.adapter.RepositoryAdapter
+import com.clp3z.xapotestapp.view.adapter.RepositoryListener
 import com.clp3z.xapotestapp.viewmodel.MainViewModel
 import com.clp3z.xapotestapp.viewmodel.MainViewModelFactory
 
@@ -70,7 +73,10 @@ class MainFragment: Fragment() {
         binding.recyclerView.layoutManager = layoutManager
 
         // Adapter set up
-        val adapter = RepositoryAdapter()
+        val adapter = RepositoryAdapter(RepositoryListener { id ->
+            onItemSelected(id)
+        })
+
         binding.recyclerView.adapter = adapter
 
         // Adapter initialization via LiveData
@@ -90,7 +96,7 @@ class MainFragment: Fragment() {
                 if (totalItemCount == lastVisibleItemPosition + 1) {
 
                     // Last item is visible now, increment page count and fetch  more repositories
-                    page = page + 1
+                    page += 1
                     viewModel.fetch(onPagination = true, page)
                 }
             }
@@ -118,5 +124,10 @@ class MainFragment: Fragment() {
                 else -> println("THIS IS PENDING")
             }
         })
+    }
+
+    private fun onItemSelected(id: Int) {
+        findNavController().navigate(MainFragmentDirections
+            .actionMainFragmentToRepositoryFragment(id))
     }
 }

@@ -14,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/blue_grey_100">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -42,7 +43,7 @@
                     android:id="@+id/forkImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     app:layout_constraintBottom_toTopOf="@+id/forksTextView"
                     app:layout_constraintEnd_toEndOf="@+id/forksTextView"
                     app:layout_constraintStart_toStartOf="@+id/forksTextView"
@@ -54,7 +55,7 @@
                     android:id="@+id/watchersImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     app:layout_constraintBottom_toTopOf="@+id/watchersTextView"
                     app:layout_constraintEnd_toEndOf="@+id/watchersTextView"
                     app:layout_constraintStart_toStartOf="@+id/watchersTextView"
@@ -66,7 +67,7 @@
                     android:id="@+id/issuesImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     app:layout_constraintBottom_toTopOf="@+id/issuesTextView"
                     app:layout_constraintEnd_toEndOf="@+id/issuesTextView"
                     app:layout_constraintStart_toStartOf="@+id/issuesTextView"
@@ -79,11 +80,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    tools:text="@string/placeholder_name"
                     android:text="@{viewModel.repository.name}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/avatarImageView" />
+                    app:layout_constraintTop_toBottomOf="@+id/avatarImageView"
+                    android:fontFamily="@font/roboto_bold"
+                    tools:text="@string/placeholder_name" />
 
                 <TextView
                     android:id="@+id/descriptionTextView"
@@ -103,7 +105,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     tools:text="10400"
-                    android:text="@{viewModel.repository.forks}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/watchersTextView"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -116,7 +117,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     tools:text="2678"
-                    android:text="@{viewModel.repository.watchers}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/issuesTextView"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -129,7 +129,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     tools:text="148"
-                    android:text="@{viewModel.repository.issues}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
