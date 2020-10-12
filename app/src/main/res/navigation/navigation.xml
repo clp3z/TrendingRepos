@@ -9,7 +9,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.clp3z.xapotestapp.view.MainFragment"
-        android:label="MainFragment"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_main">
 
         <action
@@ -22,6 +22,13 @@
     <fragment
         android:id="@+id/repositoryFragment"
         android:name="com.clp3z.xapotestapp.view.RepositoryFragment"
-        android:label="RepositoryFragment"
-        tools:layout="@layout/fragment_repository"/>
+        android:label="@string/label_repository_info"
+        tools:layout="@layout/fragment_repository">
+
+        <argument
+            android:name="id"
+            app:argType="integer" />
+
+    </fragment>
+
 </navigation>

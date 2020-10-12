@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -13,21 +14,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
-        android:background="@android:color/white">
+        android:background="@color/blue_grey_100">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
         <include
-            android:id="@+id/message_no_connection"
+            android:id="@+id/messageNoConnection"
             layout="@layout/message_no_connection"
             android:visibility="invisible"
             tools:viewBindingIgnore="true"/>
 
         <include
-            android:id="@+id/message_no_database"
+            android:id="@+id/messageNoDatabase"
             layout="@layout/message_no_database"
+            android:visibility="invisible"
             tools:viewBindingIgnore="true"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

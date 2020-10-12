@@ -13,3 +13,8 @@ const val REPOSITORIES_REQUEST = 10
  * Return Code for Unknown error from Web Service
  */
 const val ERROR_REQUEST = -1
+
+/**
+ * Database name
+ */
+const val DATABASE_NAME = "local_database"

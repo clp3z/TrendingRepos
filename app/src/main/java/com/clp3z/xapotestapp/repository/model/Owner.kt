@@ -13,5 +13,7 @@ data class Owner (
     var avatar: String,
 
     @SerializedName("html_url")
-    var url: String
+    var url: String,
+
+    var login: String
 )

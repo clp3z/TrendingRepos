@@ -5,6 +5,7 @@ package com.clp3z.xapotestapp.base
  */
 
 enum class ModelState {
+
     // No internet connection detected when performing network request
     NO_INTERNET,
 

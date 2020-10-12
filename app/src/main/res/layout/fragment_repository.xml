@@ -27,7 +27,7 @@
                 android:layout_height="match_parent"
                 android:padding="16dp">
 
-                <com.clp3z.xapotestapp.view.CircleImageView
+                <com.clp3z.xapotestapp.view.custom.CircleImageView
                     android:id="@+id/avatarImageView"
                     android:layout_width="100dp"
                     android:layout_height="100dp"

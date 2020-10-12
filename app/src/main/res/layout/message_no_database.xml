@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -15,9 +16,7 @@
             android:layout_width="@dimen/message_image_size"
             android:layout_height="@dimen/message_image_size"
             android:src="@drawable/ic_no_database"
-            android:contentDescription="@string/image_no_connection"
-            android:clickable="true"
-            android:focusable="true"/>
+            android:contentDescription="@string/image_no_connection"/>
 
         <TextView
             android:text="@string/label_no_cache"

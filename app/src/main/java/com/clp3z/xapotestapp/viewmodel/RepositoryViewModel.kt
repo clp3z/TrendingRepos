@@ -16,8 +16,6 @@ class RepositoryViewModel(
 )
     : ViewModel() {
 
-    // TODO: set avatar with Glide
-
     /**
      * Coroutines
      */

@@ -19,7 +19,7 @@ data class Repository (
     var name: String,
 
     @ColumnInfo
-    var description: String,
+    var description: String?,
 
     @ColumnInfo
     var owner: Owner,

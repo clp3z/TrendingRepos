@@ -17,7 +17,6 @@ import kotlinx.coroutines.*
 /**
  * Created by Clelia López on 10/10/20
  */
-
 class MainViewModel(
     private val database: LocalDatabaseDAO,
     val app: Application
@@ -25,7 +24,6 @@ class MainViewModel(
     AndroidViewModel(app), Listener.OnServerResponseListener<RepositoriesResponse> {
 
     // TODO: fetch() gain on scroll
-    // TODO: connect LiveData with recycler view
     // TODO: handle onItemSelected on adapter
 
     /**
@@ -49,15 +47,13 @@ class MainViewModel(
     init {
         viewModelJob = Job()
         uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-
-        fetch()
     }
 
-    private fun fetch() {
-        if (repositories.value == null) {
+    fun fetch(onPagination: Boolean = false, page: Int = 1) {
+        if (repositories.value?.size == 0 || onPagination) {
 
             if (isInternetAvailable(app)) {
-                val request = RepositoriesRequest(Unit, REPOSITORIES_REQUEST, this)
+                val request = RepositoriesRequest(page, REPOSITORIES_REQUEST, this)
                 request.performServerRequest()
 
                 _state.value = ModelState.LOADING

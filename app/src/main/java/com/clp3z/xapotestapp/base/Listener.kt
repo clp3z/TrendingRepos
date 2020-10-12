@@ -17,15 +17,4 @@ interface Listener {
 
         fun onServerResponse(response: R?, returnCode: Int)
     }
-
-    interface RepositoryEventListener {
-
-        fun onDataReady()
-
-        fun onConnectionNotAvailable()
-
-        fun onCacheNotAvailable()
-
-        fun onUnknownError()
-    }
 }

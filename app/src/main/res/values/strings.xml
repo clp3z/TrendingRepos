@@ -17,5 +17,6 @@
     <string name="label_please_check">Please check your connection \nand try again</string>
     <string name="label_no_cache">No Database!</string>
     <string name="label_downloading">Downloading from server… \nPlease wait!</string>
+    <string name="label_repository_info">Repository Info</string>
 
 </resources>

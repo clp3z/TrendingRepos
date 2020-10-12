@@ -8,11 +8,11 @@ import com.clp3z.xapotestapp.base.Logger
  * Created by Clelia López on 10/10/20
  */
 class RepositoriesRequest(
-    parameters: Unit,
+    parameters: Int,
     returnCode: Int,
     listener: Listener.OnServerResponseListener<RepositoriesResponse>
 ):
-    ServerRequestStrategy<Unit, RepositoriesResponse>(parameters, returnCode, listener) {
+    ServerRequestStrategy<Int, RepositoriesResponse>(parameters, returnCode, listener) {
 
     init {
         TAG = javaClass.simpleName
@@ -20,6 +20,6 @@ class RepositoriesRequest(
     }
 
     override fun setCall() {
-        call = Client.getRestAPIService()?.getRepositories()
+        call = Client.getRestAPIService()?.getRepositories(parameter)
     }
 }
