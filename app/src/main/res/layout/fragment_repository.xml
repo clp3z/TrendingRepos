@@ -80,11 +80,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:fontFamily="@font/roboto_bold"
                     android:text="@{viewModel.repository.name}"
+                    android:textAlignment="center"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/avatarImageView"
-                    android:fontFamily="@font/roboto_bold"
                     tools:text="@string/placeholder_name" />
 
                 <TextView
