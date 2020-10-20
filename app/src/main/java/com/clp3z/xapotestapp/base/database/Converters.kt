@@ -1,7 +1,7 @@
-package com.clp3z.xapotestapp.repository.database
+package com.clp3z.xapotestapp.base.database
 
 import androidx.room.TypeConverter
-import com.clp3z.xapotestapp.repository.model.Owner
+import com.clp3z.xapotestapp.repository.database.Owner
 import com.google.gson.Gson
 
 /**

@@ -4,12 +4,12 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.clp3z.xapotestapp.base.Listener
-import com.clp3z.xapotestapp.base.ModelState
-import com.clp3z.xapotestapp.base.REPOSITORIES_REQUEST
-import com.clp3z.xapotestapp.base.isInternetAvailable
-import com.clp3z.xapotestapp.repository.database.LocalDatabaseDAO
-import com.clp3z.xapotestapp.repository.model.Repository
+import com.clp3z.xapotestapp.base.interfaces.Listener
+import com.clp3z.xapotestapp.base.general.ModelState
+import com.clp3z.xapotestapp.base.general.REPOSITORIES_REQUEST
+import com.clp3z.xapotestapp.base.general.isInternetAvailable
+import com.clp3z.xapotestapp.base.database.DatabaseDAO
+import com.clp3z.xapotestapp.repository.database.Repository
 import com.clp3z.xapotestapp.repository.network.RepositoriesRequest
 import com.clp3z.xapotestapp.repository.network.RepositoriesResponse
 import kotlinx.coroutines.*
@@ -18,7 +18,7 @@ import kotlinx.coroutines.*
  * Created by Clelia López on 10/10/20
  */
 class MainViewModel(
-    private val database: LocalDatabaseDAO,
+    private val database: DatabaseDAO,
     val app: Application
 ):
     AndroidViewModel(app), Listener.OnServerResponseListener<RepositoriesResponse> {

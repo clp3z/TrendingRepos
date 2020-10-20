@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.clp3z.xapotestapp.viewmodel.RepositoryViewModel" />
+            type="com.clp3z.xapotestapp.repo.RepoViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat

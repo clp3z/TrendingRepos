@@ -1,4 +1,4 @@
-package com.clp3z.xapotestapp.base
+package com.clp3z.xapotestapp.base.general
 
 import android.content.Context
 import android.net.ConnectivityManager

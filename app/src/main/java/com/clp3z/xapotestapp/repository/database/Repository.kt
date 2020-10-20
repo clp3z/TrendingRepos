@@ -1,4 +1,4 @@
-package com.clp3z.xapotestapp.repository.model
+package com.clp3z.xapotestapp.repository.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

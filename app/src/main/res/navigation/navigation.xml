@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/repositoryFragment"
-        android:name="com.clp3z.xapotestapp.view.RepositoryFragment"
+        android:name="com.clp3z.xapotestapp.repo.RepoFragment"
         android:label="@string/label_repository_info"
         tools:layout="@layout/fragment_repository">
 

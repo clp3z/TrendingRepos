@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.clp3z.xapotestapp.R
 import com.clp3z.xapotestapp.databinding.ListItemBinding
-import com.clp3z.xapotestapp.repository.model.Repository
+import com.clp3z.xapotestapp.repository.database.Repository
 import com.squareup.picasso.Picasso
 
 /**

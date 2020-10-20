@@ -1,4 +1,4 @@
-package com.clp3z.xapotestapp.repository.model
+package com.clp3z.xapotestapp.repository.database
 
 import com.google.gson.annotations.SerializedName
 

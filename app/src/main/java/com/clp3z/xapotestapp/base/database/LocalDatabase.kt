@@ -1,12 +1,12 @@
-package com.clp3z.xapotestapp.repository.database
+package com.clp3z.xapotestapp.base.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.clp3z.xapotestapp.base.DATABASE_NAME
-import com.clp3z.xapotestapp.repository.model.Repository
+import com.clp3z.xapotestapp.base.general.DATABASE_NAME
+import com.clp3z.xapotestapp.repository.database.Repository
 
 /**
  * Created by Clelia López on 10/10/20
@@ -16,7 +16,7 @@ import com.clp3z.xapotestapp.repository.model.Repository
 abstract class LocalDatabase : RoomDatabase() {
 
     // Associated the DAO with this database
-    abstract val databaseDao: LocalDatabaseDAO
+    abstract val databaseDao: DatabaseDAO
 
     companion object {
 

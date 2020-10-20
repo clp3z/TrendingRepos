@@ -4,15 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.clp3z.xapotestapp.base.ModelState
+import com.clp3z.xapotestapp.base.database.LocalDatabase
+import com.clp3z.xapotestapp.base.general.ModelState
 import com.clp3z.xapotestapp.databinding.FragmentMainBinding
-import com.clp3z.xapotestapp.repository.database.LocalDatabase
 import com.clp3z.xapotestapp.view.adapter.RepositoryAdapter
 import com.clp3z.xapotestapp.view.adapter.RepositoryListener
 import com.clp3z.xapotestapp.viewmodel.MainViewModel

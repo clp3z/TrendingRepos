@@ -1,8 +1,8 @@
-package com.clp3z.xapotestapp.repository.network
+package com.clp3z.xapotestapp.base.network
 
-import com.clp3z.xapotestapp.base.ERROR_REQUEST
-import com.clp3z.xapotestapp.base.Listener
-import com.clp3z.xapotestapp.base.Logger
+import com.clp3z.xapotestapp.base.general.ERROR_REQUEST
+import com.clp3z.xapotestapp.base.interfaces.Listener
+import com.clp3z.xapotestapp.base.general.Logger
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

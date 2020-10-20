@@ -19,14 +19,14 @@ package com.clp3z.xapotestapp.viewmodel
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.clp3z.xapotestapp.repository.database.LocalDatabaseDAO
+import com.clp3z.xapotestapp.base.database.DatabaseDAO
 
 /**
  * Created by Clelia López on 10/10/20
  */
 // TODO: optimize into one class
 class MainViewModelFactory(
-    private val database: LocalDatabaseDAO,
+    private val database: DatabaseDAO,
     private val application: Application
 )
     : ViewModelProvider.Factory {
