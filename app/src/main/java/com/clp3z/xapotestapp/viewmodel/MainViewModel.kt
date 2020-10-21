@@ -8,7 +8,8 @@ import com.clp3z.xapotestapp.base.interfaces.Listener
 import com.clp3z.xapotestapp.base.general.ModelState
 import com.clp3z.xapotestapp.base.general.REPOSITORIES_REQUEST
 import com.clp3z.xapotestapp.base.general.isInternetAvailable
-import com.clp3z.xapotestapp.base.database.DatabaseDAO
+import com.clp3z.xapotestapp.base.database.LocalDatabaseDAO
+import com.clp3z.xapotestapp.base.general.getRepositoryList
 import com.clp3z.xapotestapp.repository.database.Repository
 import com.clp3z.xapotestapp.repository.network.RepositoriesRequest
 import com.clp3z.xapotestapp.repository.network.RepositoriesResponse
@@ -18,12 +19,10 @@ import kotlinx.coroutines.*
  * Created by Clelia López on 10/10/20
  */
 class MainViewModel(
-    private val database: DatabaseDAO,
+    private val localDatabase: LocalDatabaseDAO,
     val app: Application
 ):
     AndroidViewModel(app), Listener.OnServerResponseListener<RepositoriesResponse> {
-
-    // TODO: handle onItemSelected on adapter
 
     /**
      * Coroutines
@@ -34,7 +33,7 @@ class MainViewModel(
     /**
      * Retrieves repositories and updates interface via LiveData
      */
-    val repositories = database.getRepositories()
+    val repositories = localDatabase.getRepositories()
 
     /**
      * Update MainFragment state
@@ -42,6 +41,7 @@ class MainViewModel(
     private val _state = MutableLiveData<ModelState>()
     val state: LiveData<ModelState>
         get() = _state
+
 
     init {
         viewModelJob = Job()
@@ -66,9 +66,9 @@ class MainViewModel(
         }
     }
 
-    private suspend fun insert(repository: Repository) {
+    private suspend fun insertAll(repositoryList: List<Repository>) {
         return withContext(Dispatchers.IO) {
-            database.insert(repository)
+            localDatabase.insertAll(repositoryList)
         }
     }
 
@@ -77,8 +77,7 @@ class MainViewModel(
             REPOSITORIES_REQUEST ->
             {
                 uiScope.launch {
-                    for (repository in response?.items!!)
-                        insert(repository)
+                    insertAll(getRepositoryList(response!!.items))
                 }
 
                 _state.value = ModelState.AVAILABLE

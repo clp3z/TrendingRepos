@@ -1,9 +1,10 @@
 package com.clp3z.xapotestapp.repository.database
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.gson.annotations.SerializedName
+import com.clp3z.xapotestapp.repository.network.OwnerResponse
 
 /**
  * Created by Clelia López on 10/9/20
@@ -15,35 +16,30 @@ data class Repository (
     var id: Int,
 
     @ColumnInfo
-    @SerializedName("full_name")
     var name: String,
 
     @ColumnInfo
     var description: String?,
 
-    @ColumnInfo
-    var owner: Owner,
+    @Embedded(prefix = "owner_")
+    var owner: OwnerResponse,
 
     @ColumnInfo
     var forks: Int,
 
     @ColumnInfo
-    @SerializedName("open_issues")
     var issues: Int,
 
     @ColumnInfo
     var watchers: Int,
 
     @ColumnInfo
-    @SerializedName("created_at")
     var created: String,
 
     @ColumnInfo
-    @SerializedName("updated_at")
     var updated: String,
 
     @ColumnInfo
-    @SerializedName("pushed_at")
     var pushed: String,
 
     @ColumnInfo
@@ -53,10 +49,8 @@ data class Repository (
     var language: String,
 
     @ColumnInfo
-    @SerializedName("html_url")
     var url: String,
 
     @ColumnInfo
-    @SerializedName("contributors_url")
     var contributorsUrl: String
 )

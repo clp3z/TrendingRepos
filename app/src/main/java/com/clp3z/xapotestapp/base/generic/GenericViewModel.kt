@@ -3,6 +3,7 @@ package com.clp3z.xapotestapp.base.generic
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.clp3z.properlytestapp.base.architecture.ViewModelMethods
+import com.clp3z.xapotestapp.base.general.Logger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -26,13 +27,26 @@ abstract class GenericViewModel<M>(
 ):
     AndroidViewModel(appContext), ViewModelMethods {
 
+    /**
+     * Job. Instantiated only if used
+     */
     protected val viewModelJob: Job by lazy {
         Job()
     }
 
+    /**
+     * UI Scope. Instantiated only if used
+     */
     protected val uiScope: CoroutineScope by lazy {
         CoroutineScope(Dispatchers.Main + viewModelJob)
     }
+
+    /**
+     * Logger
+     */
+    protected lateinit var TAG: String
+    protected lateinit var logger: Logger
+
 
     init {
         this.fetch()

@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.clp3z.xapotestapp.base.generic.GenericViewModel
-import com.clp3z.xapotestapp.repository.database.Repository
+import com.clp3z.xapotestapp.repository.database.RepositoryQuery
 import kotlinx.coroutines.launch
 
 /**
@@ -12,15 +12,15 @@ import kotlinx.coroutines.launch
  */
 class RepoViewModel(
     application: Application,
-    repoModel: RepoModel
+    repoModel: RepoModel    // TODO: as improvement consider using GenericModel and then cast
 ):
     GenericViewModel<RepoModel>(application, repoModel) {
 
     /**
      * Retrieves repository from database and updates via LiveData
      */
-    private var _repository =  MutableLiveData<Repository>()
-    val repository: LiveData<Repository>
+    private var _repository =  MutableLiveData<RepositoryQuery>()
+    val repository: LiveData<RepositoryQuery>
         get() = _repository
 
 

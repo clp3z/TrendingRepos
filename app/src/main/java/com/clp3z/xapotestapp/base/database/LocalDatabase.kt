@@ -12,11 +12,11 @@ import com.clp3z.xapotestapp.repository.database.Repository
  * Created by Clelia López on 10/10/20
  */
 @Database(entities = [Repository::class], version = 1,  exportSchema = false)
-@TypeConverters(Converters::class)
+// @TypeConverters(Converters::class)
 abstract class LocalDatabase : RoomDatabase() {
 
     // Associated the DAO with this database
-    abstract val databaseDao: DatabaseDAO
+    abstract val localDatabaseDao: LocalDatabaseDAO
 
     companion object {
 

@@ -1,7 +1,7 @@
 package com.clp3z.xapotestapp.base.database
 
 import androidx.room.TypeConverter
-import com.clp3z.xapotestapp.repository.database.Owner
+import com.clp3z.xapotestapp.repository.network.OwnerResponse
 import com.google.gson.Gson
 
 /**
@@ -10,10 +10,10 @@ import com.google.gson.Gson
 class Converters {
 
     @TypeConverter
-    fun ownerToString(owner: Owner): String
-            = Gson().toJson(owner)
+    fun ownerToString(ownerResponse: OwnerResponse): String
+            = Gson().toJson(ownerResponse)
 
     @TypeConverter
-    fun fromJsonOwner(jsonOwner: String): Owner
-            = Gson().fromJson(jsonOwner, Owner::class.java)
+    fun fromJsonOwner(jsonOwner: String): OwnerResponse
+            = Gson().fromJson(jsonOwner, OwnerResponse::class.java)
 }

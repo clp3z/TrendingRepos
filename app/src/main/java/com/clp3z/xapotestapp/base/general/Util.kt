@@ -4,11 +4,12 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import com.clp3z.xapotestapp.repository.database.Repository
+import com.clp3z.xapotestapp.repository.network.RepositoryResponse
 
 /**
  * Created by Clelia López on 10/10/20
  */
-
 @Suppress("DEPRECATION")
 fun isInternetAvailable(context: Context): Boolean {
     var result = false
@@ -43,3 +44,30 @@ fun isInternetAvailable(context: Context): Boolean {
     return result
 }
 
+@Suppress("FunctionName")
+fun repository_FromResponse(response: RepositoryResponse): Repository {
+    return Repository(
+        response.id,
+        response.name,
+        response.description,
+        response.owner,
+        response.forks,
+        response.issues,
+        response.watchers,
+        response.created,
+        response.updated,
+        response.pushed,
+        response.size,
+        response.language,
+        response.url,
+        response.contributorsUrl,
+    )
+}
+
+fun getRepositoryList(list: List<RepositoryResponse>): List<Repository> {
+    val result = ArrayList<Repository>()
+    for (item in list) {
+        result.add(repository_FromResponse(item))
+    }
+    return result
+}

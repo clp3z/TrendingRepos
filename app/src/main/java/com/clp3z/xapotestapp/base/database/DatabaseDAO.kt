@@ -1,24 +1,24 @@
 package com.clp3z.xapotestapp.base.database
 
-import androidx.lifecycle.LiveData
-import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import com.clp3z.xapotestapp.repository.database.Repository
+import androidx.room.Update
 
 /**
- * Created by Clelia López on 10/9/20
+ * Created by Clelia López on 10/20/20
  */
-@Dao
-interface DatabaseDAO {
+interface DatabaseDAO<T> {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(repository: Repository)
+    fun insert(vararg item: T)
 
-    @Query("SELECT * FROM repository_table WHERE id= :id")
-    fun get(id: Int): Repository
+    @Delete
+    fun delete(vararg item: T)
 
-    @Query("SELECT * FROM repository_table ORDER BY forks DESC")
-    fun getRepositories(): LiveData<List<Repository>>
+    @Update
+    fun update(vararg item: T)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(list: List<T>)
 }

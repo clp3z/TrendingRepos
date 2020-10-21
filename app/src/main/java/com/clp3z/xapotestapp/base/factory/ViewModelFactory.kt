@@ -17,14 +17,10 @@ class ViewModelFactory(
     ViewModelProvider.Factory {
 
     @Suppress("unchecked_cast")
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T: ViewModel?> create(modelClass: Class<T>) =  when (modelClass) {
 
-        when (modelClass) {
+        RepoViewModel::class.java -> RepoViewModel(application, model as RepoModel) as T
 
-            RepoViewModel::class.java -> return RepoViewModel(application, model as RepoModel) as T
-
-        }
-
-        throw IllegalArgumentException("Unknown ViewModel class")
+        else -> throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

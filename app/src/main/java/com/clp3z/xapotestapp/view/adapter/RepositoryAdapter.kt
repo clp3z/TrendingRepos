@@ -7,17 +7,19 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.clp3z.xapotestapp.R
 import com.clp3z.xapotestapp.databinding.ListItemBinding
-import com.clp3z.xapotestapp.repository.database.Repository
+import com.clp3z.xapotestapp.repository.database.RepositoryItemQuery
 import com.squareup.picasso.Picasso
 
 /**
  * Created by Clelia López on 10/11/20
  */
 class RepositoryAdapter(private val clickListener: RepositoryListener):
-    ListAdapter<Repository, RepositoryAdapter.ViewHolder>(RepositoryDiffCallback()){
+    ListAdapter<RepositoryItemQuery, RepositoryAdapter.ViewHolder>(RepositoryDiffCallback()){
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder.from(parent)
+
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
@@ -30,15 +32,15 @@ class RepositoryAdapter(private val clickListener: RepositoryListener):
         /**
          * Bind views with contents
          */
-        fun bind(item: Repository, clickListener: RepositoryListener) {
+        fun bind(item: RepositoryItemQuery, clickListener: RepositoryListener) {
             binding.repository = item
 
             binding.nameTextView.text = item.name
-            binding.ownerTextView.text = item.owner.login
+            binding.ownerTextView.text = item.owner_login
             binding.forksTextView.text = item.forks.toString()
 
             Picasso.get()
-                .load(item.owner.avatar)
+                .load(item.owner_avatar)
                 .placeholder(R.drawable.placeholder)
                 .into(binding.avatarImageView)
 
@@ -55,25 +57,25 @@ class RepositoryAdapter(private val clickListener: RepositoryListener):
         }
     }
 
-    class RepositoryDiffCallback: DiffUtil.ItemCallback<Repository>() {
+    class RepositoryDiffCallback: DiffUtil.ItemCallback<RepositoryItemQuery>() {
 
         /**
          * Two items are the same if their Id values are equal
          */
-        override fun areItemsTheSame(oldItem: Repository, newItem: Repository) =
+        override fun areItemsTheSame(oldItem: RepositoryItemQuery, newItem: RepositoryItemQuery) =
             newItem.id == oldItem.id
 
         /**
          * Two items are the same if they have the same value, oldItem == newItem.
          * Validation with .equals (via data class implementation)
          */
-        override fun areContentsTheSame(oldItem: Repository, newItem: Repository) =
+        override fun areContentsTheSame(oldItem: RepositoryItemQuery, newItem: RepositoryItemQuery) =
             newItem == oldItem
     }
 }
 
 class RepositoryListener(val clickListener: (id: Int) -> Unit) {
-    fun onClick(repository: Repository) {
+    fun onClick(repository: RepositoryItemQuery) {
         clickListener(repository.id)
     }
 }

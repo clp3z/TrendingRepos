@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import com.clp3z.xapotestapp.base.general.Logger
 
 /**
  * Base class for any fragment in this MVVMB (Model-View-ViewModel-Binder) architecture
@@ -23,7 +24,17 @@ import androidx.lifecycle.ViewModel
 abstract class GenericFragment<B: ViewDataBinding, VM: ViewModel>
     : Fragment() {
 
+    /**
+     * Binder object
+     */
     protected lateinit var viewModelBinder: ViewModelBinder<B,VM>
+
+    /**
+     * Logger
+     */
+    protected lateinit var TAG: String
+    protected lateinit var logger: Logger
+
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -23,7 +23,7 @@ import com.clp3z.xapotestapp.viewmodel.MainViewModelFactory
 class MainFragment: Fragment() {
 
     private lateinit var binding: FragmentMainBinding
-    private lateinit var viewModel:MainViewModel
+    private lateinit var viewModel: MainViewModel
     private lateinit var layoutManager: LinearLayoutManager
 
     /**
@@ -57,7 +57,7 @@ class MainFragment: Fragment() {
 
     private fun initializeViewModel() {
         val application = requireActivity().application
-        val database = LocalDatabase.getInstance(application).databaseDao
+        val database = LocalDatabase.getInstance(application).localDatabaseDao
         val viewModelFactory = MainViewModelFactory(database, application)
         viewModel =  ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 

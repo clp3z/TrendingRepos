@@ -1,11 +1,11 @@
-package com.clp3z.xapotestapp.repository.database
+package com.clp3z.xapotestapp.repository.network
 
 import com.google.gson.annotations.SerializedName
 
 /**
  * Created by Clelia López on 10/9/20
  */
-data class Owner (
+data class OwnerResponse (
 
     var id: Int,
 

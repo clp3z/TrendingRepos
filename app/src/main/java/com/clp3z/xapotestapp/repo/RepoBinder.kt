@@ -26,12 +26,12 @@ class RepoBinder(
 
 
     init {
-        database = LocalDatabase.getInstance(application).databaseDao
+        localDatabase = LocalDatabase.getInstance(application).localDatabaseDao
         arguments = RepoFragmentArgs.fromBundle(fragment.requireArguments())
     }
 
     override fun createModel(): GenericModel<*> =
-        RepoModel(database, arguments.id)
+        RepoModel(localDatabase, arguments.id)
 
 
     override fun createViewModelFactory() =
@@ -47,6 +47,7 @@ class RepoBinder(
         binding.viewModel = viewModel as RepoViewModel
     }
 
+    // TODO: User Adapter Binders to simplify this
     override fun onBindObservers() {
         (viewModel as RepoViewModel).repository.observe(fragment, { repository ->
             binding.forksTextView.text = repository.forks.toString()
@@ -54,7 +55,7 @@ class RepoBinder(
             binding.issuesTextView.text = repository.issues.toString()
 
             Picasso.get()
-                .load(repository.owner.avatar)
+                .load(repository.owner_avatar)
                 .placeholder(R.drawable.placeholder)
                 .into(binding.avatarImageView)
         })
