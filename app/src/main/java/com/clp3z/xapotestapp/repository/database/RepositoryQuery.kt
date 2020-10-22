@@ -6,7 +6,7 @@ package com.clp3z.xapotestapp.repository.database
 data class RepositoryQuery (
     var id: Int,
     var name: String,
-    var description: String,
+    var description: String?,
     var forks: Int,
     var watchers: Int,
     var issues: Int,

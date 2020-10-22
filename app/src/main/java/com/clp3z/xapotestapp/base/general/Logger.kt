@@ -6,28 +6,29 @@ import com.clp3z.xapotestapp.R
 /**
  * Created by Clelia López on 10/19/20
  */
-class Logger(private val TAG: String) {
+@Suppress("unused")
+class Logger(private val tag: String) {
 
     /**
      * Properties
      */
-    private val APP = R.string.app_name
+    private val app = R.string.app_name
     private val separator = "=====> "
 
     private val isDebug = true
 
     fun log(method: String, message: String) {
         if (isDebug)
-            Log.i("$APP - $TAG:", "$separator$method: $message")
+            Log.i("$app - $tag:", "$separator$method: $message")
     }
 
     fun logDebug(method: String, message: String) {
         if (isDebug)
-            Log.d("$APP - $TAG:", "$separator$method: $message")
+            Log.d("$app - $tag:", "$separator$method: $message")
     }
 
     fun logError(method: String, message: String?) {
         if (isDebug)
-            Log.e("$APP - $TAG:", "$separator$method: $message")
+            Log.e("$app - $tag:", "$separator$method: $message")
     }
 }

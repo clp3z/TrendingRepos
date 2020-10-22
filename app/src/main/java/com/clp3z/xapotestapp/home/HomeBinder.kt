@@ -13,18 +13,28 @@ import com.clp3z.xapotestapp.base.factory.ViewModelFactoryBuilder
 import com.clp3z.xapotestapp.base.general.Logger
 import com.clp3z.xapotestapp.base.general.ModelState
 import com.clp3z.xapotestapp.base.generic.ViewModelBinder
-import com.clp3z.xapotestapp.databinding.FragmentMainBinding
-import com.clp3z.xapotestapp.view.adapter.RepositoryAdapter
-import com.clp3z.xapotestapp.view.adapter.RepositoryListener
+import com.clp3z.xapotestapp.databinding.FragmentHomeBinding
+import com.clp3z.xapotestapp.home.adapter.RepositoryAdapter
+import com.clp3z.xapotestapp.home.adapter.RepositoryListener
 
 /**
  * Created by Clelia López on 10/21/20
  */
 class HomeBinder(
     private val fragment: HomeFragment,
-    private val binding: FragmentMainBinding
+    private val binding: FragmentHomeBinding
 ):
-    ViewModelBinder<FragmentMainBinding, HomeViewModel> (fragment, binding) {
+    ViewModelBinder<FragmentHomeBinding, HomeViewModel> (fragment, binding) {
+
+    /**
+     * Adapter
+     */
+    private lateinit var adapter: RepositoryAdapter
+
+    /**
+     * LayoutManager
+     */
+    private lateinit var layoutManager: LinearLayoutManager
 
     /**
      * Handles pagination
@@ -33,19 +43,9 @@ class HomeBinder(
         get() = layoutManager.findLastVisibleItemPosition()
 
     /**
-     * LayoutManager
-     */
-    private lateinit var layoutManager: LinearLayoutManager
-
-    /**
      * Application context
      */
     private var application: Application = fragment.requireActivity().application
-
-    /**
-     * Adapter
-     */
-    private lateinit var adapter: RepositoryAdapter
 
     /**
      * ViewModel reference
@@ -72,7 +72,7 @@ class HomeBinder(
     override fun onBindViewModel() {
         super.onBindViewModel()
         homeViewModel = viewModel as HomeViewModel
-        binding.viewModel = viewModel as HomeViewModel
+        binding.viewModel = homeViewModel
     }
 
     override fun onBindObservers() {
@@ -134,7 +134,6 @@ class HomeBinder(
         adapter = RepositoryAdapter(RepositoryListener { id ->
             onItemSelected(id)
         })
-
         binding.recyclerView.adapter = adapter
 
         // Endless pagination

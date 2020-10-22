@@ -1,4 +1,4 @@
-package com.clp3z.xapotestapp.view.custom
+package com.clp3z.xapotestapp.base.customview
 
 import android.content.Context
 import android.graphics.*

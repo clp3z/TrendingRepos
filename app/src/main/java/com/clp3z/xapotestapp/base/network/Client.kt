@@ -13,7 +13,7 @@ object Client {
     /**
      * Properties
      */
-    private val host = "https://api.github.com/"
+    private const val host = "https://api.github.com/"
     private var restAPIServer: RestAPIServer? = null
 
     private val RETROFIT_LOG_LEVEL = HttpLoggingInterceptor.Level.BASIC

@@ -29,7 +29,7 @@ class HomeModel(
     private lateinit var request: RepositoriesRequest
 
     /**
-     * Observable Repository list, on proper format. Ready to insert on database
+     * Observable repository list, on proper format. Ready to insert on database
      */
     private var _repositoryList = MutableLiveData<List<Repository>>()
     val repositoryList: LiveData<List<Repository>>
@@ -51,8 +51,8 @@ class HomeModel(
     }
 
     override fun fetch() {
-        fetch(false, 1)
         _state.value = ModelState.LOADING
+        fetch(false, 1)
     }
 
     fun fetch(onPagination: Boolean, page: Int) {

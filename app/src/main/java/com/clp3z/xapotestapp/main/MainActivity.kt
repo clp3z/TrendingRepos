@@ -1,4 +1,4 @@
-package com.clp3z.xapotestapp.view
+package com.clp3z.xapotestapp.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

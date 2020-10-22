@@ -27,7 +27,7 @@ class ViewModelFactory(
 
             RepoViewModel::class.java -> RepoViewModel(application, database, id) as T
 
-            else -> throw IllegalArgumentException("Unknown ViewModel class")
+            else -> throw IllegalArgumentException("ViewModelFactory: Unknown ViewModel class")
         }
     }
 }

@@ -2,8 +2,8 @@ package com.clp3z.xapotestapp.base.generic
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import com.clp3z.properlytestapp.base.architecture.ViewModelMethods
 import com.clp3z.xapotestapp.base.general.Logger
+import com.clp3z.xapotestapp.base.interfaces.ViewModelMethods
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -15,8 +15,9 @@ import kotlinx.coroutines.Job
  * via transformations maps) and survive configuration changes.
  *
  * As the ViewModel should not contain any reference to View Components (Activities, Fragments or Views),
- * or any data that would be destroyed on configuration changes but is needed by the UI, the
- * communication with the View layer is done via LiveData updates, with one or two-way data binding.
+ * or any data that would be destroyed on configuration changes (but is needed by the UI), the
+ * communication with the View layer is done via LiveData updates, with one or two-way data binding
+ * support.
  *
  * Created by Clelia López on 10/19/20
  */
@@ -25,7 +26,8 @@ abstract class GenericViewModel<M: GenericModel<*>>(
     protected val appContext: Application,
     protected val model: M
 ):
-    AndroidViewModel(appContext), ViewModelMethods {
+    AndroidViewModel(appContext),
+    ViewModelMethods {
 
     /**
      * Job. Instantiated only if used

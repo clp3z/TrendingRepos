@@ -23,7 +23,7 @@ class RepoModel(
 
     suspend fun getRepositoryById(): RepositoryQuery {
         return withContext(Dispatchers.IO) {
-            localDatabase.get(param)
+            localDatabase.getRepositoryById(param)
         }
     }
 }

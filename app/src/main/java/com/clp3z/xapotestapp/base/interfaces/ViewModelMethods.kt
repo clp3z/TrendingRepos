@@ -1,4 +1,4 @@
-package com.clp3z.properlytestapp.base.architecture
+package com.clp3z.xapotestapp.base.interfaces
 
 /**
  * Created by Clelia López on 9/13/20
