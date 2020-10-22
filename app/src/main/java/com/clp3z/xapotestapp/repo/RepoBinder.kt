@@ -47,7 +47,7 @@ class RepoBinder(
         binding.viewModel = viewModel as RepoViewModel
     }
 
-    // TODO: User Adapter Binders to simplify this
+    // TODO: Use Adapter Binders to simplify this
     override fun onBindObservers() {
         (viewModel as RepoViewModel).repository.observe(fragment, { repository ->
             binding.forksTextView.text = repository.forks.toString()

@@ -16,6 +16,7 @@ class RepoModel(
 )
     : GenericModel<Int>(localDatabase, id) {
 
+
     override fun fetch() {
         // Does nothing
     }

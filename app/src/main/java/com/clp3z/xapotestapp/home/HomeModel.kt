@@ -1,10 +1,10 @@
 package com.clp3z.xapotestapp.home
 
 import android.app.Application
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.clp3z.xapotestapp.base.database.LocalDatabaseDAO
-import com.clp3z.xapotestapp.base.general.Logger
-import com.clp3z.xapotestapp.base.general.REPOSITORIES_REQUEST
-import com.clp3z.xapotestapp.base.general.isInternetAvailable
+import com.clp3z.xapotestapp.base.general.*
 import com.clp3z.xapotestapp.base.generic.GenericModel
 import com.clp3z.xapotestapp.base.interfaces.Listener
 import com.clp3z.xapotestapp.repository.database.Repository
@@ -16,57 +16,82 @@ import kotlinx.coroutines.withContext
 /**
  * Created by Clelia López on 10/20/20
  */
-
-/* TODO:
-* Which are the responsibilities of the model?
-*
-* The model should:
-*
-* - Perform the network request if:
-*   There are no elements in the repositories list
-*   Is getting more item onScroll
-*
-* -
-*/
-
 class HomeModel(
-    private val application: Application,
     localDatabase: LocalDatabaseDAO,
-    params: Pair<Boolean,Int>
+    application: Application,
 ):
-    GenericModel<Pair<Boolean,Int>>(localDatabase, params),
+    GenericModel<Application>(localDatabase, application),
     Listener.OnServerResponseListener<RepositoriesResponse> {
 
-
+    /**
+     * Webservice request to retrieve a page of repositories
+     */
     private lateinit var request: RepositoriesRequest
-    private lateinit var repositoryList: List<Repository>
+
+    /**
+     * Observable Repository list, on proper format. Ready to insert on database
+     */
+    private var _repositoryList = MutableLiveData<List<Repository>>()
+    val repositoryList: LiveData<List<Repository>>
+        get() = _repositoryList
+
+    /**
+     * Update HomeFragment state
+     */
+    private val _state = MutableLiveData<ModelState>()
+    val state: LiveData<ModelState>
+        get() = _state
+
 
     init {
         TAG = javaClass.simpleName
         logger = Logger(TAG)
+
+        fetch()
     }
 
     override fun fetch() {
-        if (isInternetAvailable(application)) {
-            request = RepositoriesRequest(arguments.second, REPOSITORIES_REQUEST, this)
+        fetch(false, 1)
+    }
+
+    fun fetch(onPagination: Boolean, page: Int) {
+        if (isInternetAvailable(arguments)) {
+            request = RepositoriesRequest(page, REPOSITORIES_REQUEST, this)
             request.performServerRequest()
+
+            _state.value = ModelState.LOADING
+
+        } else {
+            _state.value = ModelState.NO_INTERNET
         }
     }
 
     override fun onServerResponse(response: RepositoriesResponse?, returnCode: Int) {
         when (returnCode) {
             REPOSITORIES_REQUEST -> {
-                // repositoryList = response?.items!!
+                _repositoryList.value = getRepositoryList(response!!.items)
             }
 
-            // TODO: Manage server error code
-            else ->  logger.logError("onServerResponse", "Error with code: ")
+            else -> {
+                // TODO: Manage server error code
+                logger.logError("onServerResponse", "Error with code: ")
+
+                _state.value = ModelState.ERROR
+            }
         }
     }
 
-    private suspend fun insertAll(repositories: List<Repository>) {
+    suspend fun insertAll(repositories: List<Repository>) {
         return withContext(Dispatchers.IO) {
             localDatabase.insertAll(repositories)
         }
+    }
+
+    fun getRepositories() =
+        localDatabase.getRepositories()
+
+
+    fun setStateValue(state: ModelState) {
+        _state.value = state
     }
 }

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.clp3z.xapotestapp.base.database.LocalDatabase
@@ -62,7 +61,7 @@ class MainFragment: Fragment() {
         viewModel =  ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 
         binding.lifecycleOwner = this
-        binding.viewModel = viewModel
+        // binding.viewModel = viewModel
     }
 
     private fun initializeRecyclerView() {
@@ -126,7 +125,7 @@ class MainFragment: Fragment() {
     }
 
     private fun onItemSelected(id: Int) {
-        findNavController().navigate(MainFragmentDirections
-            .actionMainFragmentToRepositoryFragment(id))
+        /*findNavController().navigate(MainFragmentDirections
+            .actionMainFragmentToRepositoryFragment(id))*/
     }
 }

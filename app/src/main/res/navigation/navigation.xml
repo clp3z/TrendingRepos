@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.clp3z.xapotestapp.view.MainFragment"
+        android:name="com.clp3z.xapotestapp.home.HomeFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_main">
 

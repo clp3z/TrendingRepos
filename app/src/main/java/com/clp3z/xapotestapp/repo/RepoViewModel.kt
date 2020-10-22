@@ -19,7 +19,7 @@ class RepoViewModel(
     /**
      * Retrieves repository from database and updates via LiveData
      */
-    private var _repository =  MutableLiveData<RepositoryQuery>()
+    private var _repository = MutableLiveData<RepositoryQuery>()
     val repository: LiveData<RepositoryQuery>
         get() = _repository
 

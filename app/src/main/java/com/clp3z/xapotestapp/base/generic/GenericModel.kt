@@ -7,11 +7,12 @@ import com.clp3z.xapotestapp.base.interfaces.ModelMethods
 /**
  *  The model carries the business logic for an specific section of the application.
  *
- *  In this way, it represents the Domain layer and such, it should be separated from the ViewModel,
+ *  In this way, it represents the Domain layer and as such, it should be separated from the ViewModel,
  *  which is part of the Presentation layer.
  *
  * Created by Clelia López on 10/19/20
  */
+@Suppress("PropertyName")
 abstract class GenericModel<T> (
     protected val localDatabase: LocalDatabaseDAO,
     protected val arguments: T
@@ -23,9 +24,4 @@ abstract class GenericModel<T> (
      */
     protected lateinit var TAG: String
     protected lateinit var logger: Logger
-
-
-    init {
-        this.fetch()
-    }
 }
