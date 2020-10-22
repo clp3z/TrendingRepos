@@ -52,6 +52,7 @@ class HomeModel(
 
     override fun fetch() {
         fetch(false, 1)
+        _state.value = ModelState.LOADING
     }
 
     fun fetch(onPagination: Boolean, page: Int) {
@@ -59,7 +60,9 @@ class HomeModel(
             request = RepositoriesRequest(page, REPOSITORIES_REQUEST, this)
             request.performServerRequest()
 
-            _state.value = ModelState.LOADING
+            if (onPagination) {
+                _state.value = ModelState.DOWNLOADING
+            }
 
         } else {
             _state.value = ModelState.NO_INTERNET

@@ -21,6 +21,7 @@ import com.clp3z.xapotestapp.base.general.Logger
  *
  * Created by Clelia López on 10/19/20
  */
+@Suppress("PropertyName")
 abstract class GenericFragment<B: ViewDataBinding, VM: ViewModel>
     : Fragment() {
 

@@ -1,6 +1,7 @@
 package com.clp3z.xapotestapp.home
 
 import android.app.Application
+import com.clp3z.xapotestapp.base.database.LocalDatabaseDAO
 import com.clp3z.xapotestapp.base.general.Logger
 import com.clp3z.xapotestapp.base.general.ModelState
 import com.clp3z.xapotestapp.base.generic.GenericViewModel
@@ -11,14 +12,19 @@ import kotlinx.coroutines.launch
  */
 class HomeViewModel(
     application: Application,
-    homeModel: HomeModel
+    database: LocalDatabaseDAO
 ):
-    GenericViewModel<HomeModel>(application, homeModel) {
+    GenericViewModel<HomeModel>(application, HomeModel(database, application)) {
 
     /**
      * Retrieves repositories and updates interface via LiveData
      */
     val repositories = model.getRepositories()
+
+    /**
+     * Current page on web service
+     */
+    private var page = 1
 
 
     init {
@@ -39,7 +45,16 @@ class HomeViewModel(
         }
     }
 
+    fun fetch(onPagination: Boolean) {
+        page += 1
+        model.fetch(onPagination, this.page)
+
+        logger.log("fetch", "It's fetching on page = $page")
+    }
+
     override fun handleClick(id: Int) {
         // Does nothing
     }
+
+    fun getState() = model.state
 }

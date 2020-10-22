@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -30,6 +29,18 @@
         <include
             android:id="@+id/messageNoDatabase"
             layout="@layout/message_no_database"
+            android:visibility="invisible"
+            tools:viewBindingIgnore="true"/>
+
+        <include
+            android:id="@+id/messageError"
+            layout="@layout/message_error"
+            android:visibility="invisible"
+            tools:viewBindingIgnore="true"/>
+
+        <include
+            android:id="@+id/messageDownloading"
+            layout="@layout/message_downloading"
             android:visibility="invisible"
             tools:viewBindingIgnore="true"/>
 

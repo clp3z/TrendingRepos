@@ -2,11 +2,11 @@ package com.clp3z.xapotestapp.base.generic
 
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
-import com.clp3z.properlytestapp.base.architecture.interfaces.BinderMethods
 import com.clp3z.xapotestapp.base.database.LocalDatabaseDAO
 import com.clp3z.xapotestapp.base.factory.ViewModelFactory
 import com.clp3z.xapotestapp.base.factory.ViewModelFactoryBuilder
 import com.clp3z.xapotestapp.base.general.Logger
+import com.clp3z.xapotestapp.base.interfaces.BinderMethods
 
 /**
  *  It encapsulates the creation of the ViewModel and separates it from the fragment.
@@ -18,6 +18,7 @@ import com.clp3z.xapotestapp.base.general.Logger
  * Created by Clelia López on 10/19/20
  */
 
+@Suppress("PropertyName")
 abstract class ViewModelBinder<B: ViewDataBinding, VM: ViewModel>(
     private var genericFragment: GenericFragment<B,VM>,
     var bindingObject: B
@@ -37,11 +38,6 @@ abstract class ViewModelBinder<B: ViewDataBinding, VM: ViewModel>(
     protected lateinit var localDatabase: LocalDatabaseDAO
 
     /**
-     * Domain Model to be injected on ViewModel
-     */
-    protected lateinit var model: GenericModel<*>
-
-    /**
      * Logger
      */
     protected lateinit var TAG: String
@@ -49,8 +45,6 @@ abstract class ViewModelBinder<B: ViewDataBinding, VM: ViewModel>(
 
 
     override fun onBindViewModel() {
-
-        model = createModel()
 
         viewModelFactory = createViewModelFactory()
 

@@ -3,28 +3,28 @@ package com.clp3z.xapotestapp.base.factory
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.clp3z.xapotestapp.base.generic.GenericModel
-import com.clp3z.xapotestapp.home.HomeModel
+import com.clp3z.xapotestapp.base.database.LocalDatabase
 import com.clp3z.xapotestapp.home.HomeViewModel
-import com.clp3z.xapotestapp.repo.RepoModel
 import com.clp3z.xapotestapp.repo.RepoViewModel
 
 /**
  * Created by Clelia López on 10/19/20
  */
-class ViewModelFactory(
-    private val application: Application,
-    private val model: GenericModel<*>
-):
-    ViewModelProvider.Factory {
+class ViewModelFactory(private val application: Application)
+    : ViewModelProvider.Factory {
 
     @Suppress("unchecked_cast")
-    override fun <T: ViewModel?> create(modelClass: Class<T>) =  when (modelClass) {
+    override fun <T: ViewModel?> create(modelClass: Class<T>): T {
 
-        RepoViewModel::class.java -> RepoViewModel(application, model as RepoModel) as T
+        val database = LocalDatabase.getInstance(application).localDatabaseDao
 
-        HomeViewModel::class.java -> HomeViewModel(application, model as HomeModel) as T
+        return when (modelClass) {
 
-        else -> throw IllegalArgumentException("Unknown ViewModel class")
+            HomeViewModel::class.java -> HomeViewModel(application, database) as T
+
+            RepoViewModel::class.java -> RepoViewModel(application) as T
+
+            else -> throw IllegalArgumentException("Unknown ViewModel class")
+        }
     }
 }

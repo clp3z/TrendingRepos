@@ -20,8 +20,8 @@ import kotlinx.coroutines.Job
  *
  * Created by Clelia López on 10/19/20
  */
-@Suppress("MemberVisibilityCanBePrivate", "CanBeParameter")
-abstract class GenericViewModel<M>(
+@Suppress("MemberVisibilityCanBePrivate", "CanBeParameter", "PropertyName")
+abstract class GenericViewModel<M: GenericModel<*>>(
     protected val appContext: Application,
     protected val model: M
 ):

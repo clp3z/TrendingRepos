@@ -12,25 +12,18 @@
         android:background="@android:color/white">
 
         <ImageView
-            android:id="@+id/test"
             android:layout_width="@dimen/message_image_size"
             android:layout_height="@dimen/message_image_size"
-            android:src="@drawable/ic_no_database"
-            android:contentDescription="@string/image_no_database"/>
+            android:src="@drawable/ic_bug"
+            android:contentDescription="@string/image_error"/>
 
         <TextView
-            android:text="@string/label_no_cache"
-            style="@style/TitleTextViewStyle" />
+            android:text="@string/label_error"
+            style="@style/TitleTextViewStyle"/>
 
         <TextView
-            android:text="@string/label_downloading_from_server"
-            style="@style/SubtitleTextViewStyle"/>
-
-        <ProgressBar
-            android:id="@+id/progress_circular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"/>
+            android:text="@string/label_error_info"
+            style="@style/SubtitleTextViewStyle" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

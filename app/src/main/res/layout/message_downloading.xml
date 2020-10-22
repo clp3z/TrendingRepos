@@ -15,11 +15,11 @@
             android:id="@+id/test"
             android:layout_width="@dimen/message_image_size"
             android:layout_height="@dimen/message_image_size"
-            android:src="@drawable/ic_no_database"
-            android:contentDescription="@string/image_no_database"/>
+            android:src="@drawable/ic_download"
+            android:contentDescription="@string/image_downloading"/>
 
         <TextView
-            android:text="@string/label_no_cache"
+            android:text="@string/label_downloading"
             style="@style/TitleTextViewStyle" />
 
         <TextView

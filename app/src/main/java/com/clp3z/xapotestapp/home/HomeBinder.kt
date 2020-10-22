@@ -12,7 +12,6 @@ import com.clp3z.xapotestapp.base.factory.ViewModelFactory
 import com.clp3z.xapotestapp.base.factory.ViewModelFactoryBuilder
 import com.clp3z.xapotestapp.base.general.Logger
 import com.clp3z.xapotestapp.base.general.ModelState
-import com.clp3z.xapotestapp.base.generic.GenericModel
 import com.clp3z.xapotestapp.base.generic.ViewModelBinder
 import com.clp3z.xapotestapp.databinding.FragmentMainBinding
 import com.clp3z.xapotestapp.view.adapter.RepositoryAdapter
@@ -34,11 +33,6 @@ class HomeBinder(
         get() = layoutManager.findLastVisibleItemPosition()
 
     /**
-     * Current page on web service
-     */
-    private var page = 1
-
-    /**
      * LayoutManager
      */
     private lateinit var layoutManager: LinearLayoutManager
@@ -53,6 +47,11 @@ class HomeBinder(
      */
     private lateinit var adapter: RepositoryAdapter
 
+    /**
+     * ViewModel reference
+     */
+    private lateinit var homeViewModel: HomeViewModel
+
 
     init {
         TAG = javaClass.simpleName
@@ -60,6 +59,69 @@ class HomeBinder(
         localDatabase = LocalDatabase.getInstance(application).localDatabaseDao
 
         initializeRecyclerView()
+    }
+
+    override fun createViewModelFactory(): ViewModelFactory =
+        ViewModelFactoryBuilder(application).build()
+
+
+    override fun createViewModel(): ViewModel =
+        ViewModelProvider(fragment, viewModelFactory).get(HomeViewModel::class.java)
+
+
+    override fun onBindViewModel() {
+        super.onBindViewModel()
+        homeViewModel = viewModel as HomeViewModel
+        binding.viewModel = viewModel as HomeViewModel
+    }
+
+    override fun onBindObservers() {
+
+        // State observation
+        homeViewModel.getState().observe(fragment, { state ->
+            when (state) {
+
+                ModelState.LOADING -> {
+                    binding.messageNoDatabase.view.visibility = View.VISIBLE
+                    binding.messageNoConnection.view.visibility = View.INVISIBLE
+                    binding.messageError.view.visibility = View.INVISIBLE
+                    binding.messageDownloading.view.visibility = View.INVISIBLE
+                }
+
+                ModelState.NO_INTERNET -> {
+                    binding.messageNoDatabase.view.visibility = View.INVISIBLE
+                    binding.messageNoConnection.view.visibility = View.VISIBLE
+                    binding.messageError.view.visibility = View.INVISIBLE
+                    binding.messageDownloading.view.visibility = View.INVISIBLE
+                }
+
+                ModelState.ERROR -> {
+                    binding.messageNoDatabase.view.visibility = View.INVISIBLE
+                    binding.messageNoConnection.view.visibility = View.INVISIBLE
+                    binding.messageError.view.visibility = View.VISIBLE
+                    binding.messageDownloading.view.visibility = View.INVISIBLE
+                }
+
+                ModelState.DOWNLOADING -> {
+                    binding.messageNoDatabase.view.visibility = View.INVISIBLE
+                    binding.messageNoConnection.view.visibility = View.INVISIBLE
+                    binding.messageError.view.visibility = View.INVISIBLE
+                    binding.messageDownloading.view.visibility = View.VISIBLE
+                }
+
+                else -> {
+                    binding.messageNoDatabase.view.visibility = View.INVISIBLE
+                    binding.messageNoConnection.view.visibility = View.INVISIBLE
+                    binding.messageError.view.visibility = View.INVISIBLE
+                    binding.messageDownloading.view.visibility = View.INVISIBLE
+                }
+            }
+        })
+
+        // Adapter initialization via LiveData
+        homeViewModel.repositories.observe(fragment, { repositories ->
+            adapter.submitList(repositories)
+        })
     }
 
     private fun initializeRecyclerView() {
@@ -84,64 +146,16 @@ class HomeBinder(
                 if (totalItemCount == lastVisibleItemPosition + 1) {
 
                     // Last item is visible now, increment page count and fetch  more repositories
-                    page += 1
-                    (model as HomeModel).fetch(true, page)
-                    logger.log("addOnScrollListener", "It's fetching page = $page")
+                    homeViewModel.fetch(true)
+
+                    logger.log("addOnScrollListener", "Should fetch now")
                 }
             }
-        })
-    }
-
-
-    override fun createModel(): GenericModel<*> =
-        HomeModel(localDatabase, application)
-
-
-    override fun createViewModelFactory(): ViewModelFactory =
-        ViewModelFactoryBuilder(application, model).build()
-
-
-    override fun createViewModel(): ViewModel =
-        ViewModelProvider(fragment, viewModelFactory).get(HomeViewModel::class.java)
-
-
-    override fun onBindViewModel() {
-        super.onBindViewModel()
-        binding.viewModel = viewModel as HomeViewModel
-    }
-
-    override fun onBindObservers() {
-
-        // State observation on Model
-        (model as HomeModel).state.observe(fragment, { state ->
-            when (state) {
-                ModelState.NO_INTERNET -> {
-                    binding.messageNoDatabase.view.visibility = View.INVISIBLE
-                    binding.messageNoConnection.view.visibility = View.VISIBLE
-                }
-
-                ModelState.LOADING -> {
-                    binding.messageNoDatabase.view.visibility = View.VISIBLE
-                    binding.messageNoConnection.view.visibility = View.INVISIBLE
-                }
-
-                ModelState.AVAILABLE -> {
-                    binding.messageNoDatabase.view.visibility = View.INVISIBLE
-                    binding.messageNoConnection.view.visibility = View.INVISIBLE
-                }
-
-                // TODO: create this message
-                else -> logger.log("onBindObservers", "Error State!")
-            }
-        })
-
-        // Adapter initialization via LiveData
-        (viewModel as HomeViewModel).repositories.observe(fragment, { repositories ->
-            adapter.submitList(repositories)
         })
     }
 
     private fun onItemSelected(id: Int) {
+        // TODO: incorporate Navigation component
         fragment.findNavController().navigate(
             HomeFragmentDirections
             .actionMainFragmentToRepositoryFragment(id))
