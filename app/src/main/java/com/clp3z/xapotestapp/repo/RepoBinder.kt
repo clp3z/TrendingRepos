@@ -45,15 +45,11 @@ class RepoBinder(
     override fun onBindViewModel() {
         super.onBindViewModel()
         repoViewModel = viewModel as RepoViewModel
-        binding.viewModel = viewModel as RepoViewModel
+        binding.viewModel = repoViewModel
     }
 
-    // TODO: Use Adapter Binders to simplify this
     override fun onBindObservers() {
         repoViewModel.repository.observe(fragment, { repository ->
-            binding.forksTextView.text = repository.forks.toString()
-            binding.watchersTextView.text = repository.watchers.toString()
-            binding.issuesTextView.text = repository.issues.toString()
 
             Picasso.get()
                 .load(repository.owner_avatar)

@@ -146,8 +146,6 @@ class HomeBinder(
 
                     // Last item is visible now, increment page count and fetch  more repositories
                     homeViewModel.fetch(true)
-
-                    logger.log("addOnScrollListener", "Should fetch now")
                 }
             }
         })

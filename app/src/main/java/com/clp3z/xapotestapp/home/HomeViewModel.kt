@@ -37,8 +37,6 @@ class HomeViewModel(
         model.repositoryList.observeForever { repositoryList ->
             uiScope.launch {
                 model.insertAll(repositoryList)
-
-                logger.log("fetch", "A change was detected while Observing Forever")
             }
 
             model.setStateValue(ModelState.AVAILABLE)
