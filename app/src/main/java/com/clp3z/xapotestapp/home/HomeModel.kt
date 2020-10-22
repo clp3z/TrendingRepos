@@ -56,7 +56,7 @@ class HomeModel(
     }
 
     fun fetch(onPagination: Boolean, page: Int) {
-        if (isInternetAvailable(arguments)) {
+        if (isInternetAvailable(param)) {
             request = RepositoriesRequest(page, REPOSITORIES_REQUEST, this)
             request.performServerRequest()
 

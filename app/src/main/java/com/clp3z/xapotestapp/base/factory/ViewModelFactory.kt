@@ -10,7 +10,10 @@ import com.clp3z.xapotestapp.repo.RepoViewModel
 /**
  * Created by Clelia López on 10/19/20
  */
-class ViewModelFactory(private val application: Application)
+class ViewModelFactory(
+    private val application: Application,
+    private val id: Int
+)
     : ViewModelProvider.Factory {
 
     @Suppress("unchecked_cast")
@@ -22,7 +25,7 @@ class ViewModelFactory(private val application: Application)
 
             HomeViewModel::class.java -> HomeViewModel(application, database) as T
 
-            RepoViewModel::class.java -> RepoViewModel(application) as T
+            RepoViewModel::class.java -> RepoViewModel(application, database, id) as T
 
             else -> throw IllegalArgumentException("Unknown ViewModel class")
         }

@@ -15,7 +15,7 @@ import com.clp3z.xapotestapp.base.interfaces.ModelMethods
 @Suppress("PropertyName")
 abstract class GenericModel<T> (
     protected val localDatabase: LocalDatabaseDAO,
-    protected val arguments: T
+    protected val param: T
 ):
     ModelMethods {
 
