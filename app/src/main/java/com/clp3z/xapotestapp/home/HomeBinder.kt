@@ -4,7 +4,6 @@ import android.app.Application
 import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.clp3z.xapotestapp.base.database.LocalDatabase
@@ -12,6 +11,7 @@ import com.clp3z.xapotestapp.base.factory.ViewModelFactory
 import com.clp3z.xapotestapp.base.factory.ViewModelFactoryBuilder
 import com.clp3z.xapotestapp.base.general.Logger
 import com.clp3z.xapotestapp.base.general.ModelState
+import com.clp3z.xapotestapp.base.general.Navigation
 import com.clp3z.xapotestapp.base.generic.ViewModelBinder
 import com.clp3z.xapotestapp.databinding.FragmentHomeBinding
 import com.clp3z.xapotestapp.home.adapter.RepositoryAdapter
@@ -153,10 +153,6 @@ class HomeBinder(
         })
     }
 
-    private fun onItemSelected(id: Int) {
-        // TODO: incorporate Navigation component
-        fragment.findNavController().navigate(
-            HomeFragmentDirections
-            .actionMainFragmentToRepositoryFragment(id))
-    }
+    private fun onItemSelected(id: Int) =
+        Navigation.ToRepoFragment(id).from(fragment)
 }

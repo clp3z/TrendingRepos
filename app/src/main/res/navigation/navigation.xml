@@ -13,7 +13,7 @@
         tools:layout="@layout/fragment_home">
 
         <action
-            android:id="@+id/action_mainFragment_to_repositoryFragment"
+            android:id="@+id/action_homeFragment_to_repositoryFragment"
             app:destination="@id/repositoryFragment"
             app:popUpTo="@id/homeFragment" />
 
