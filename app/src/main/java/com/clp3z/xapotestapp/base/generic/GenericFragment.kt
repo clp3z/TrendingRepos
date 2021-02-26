@@ -1,6 +1,3 @@
-
-
-
 package com.clp3z.xapotestapp.base.generic
 
 import androidx.databinding.ViewDataBinding

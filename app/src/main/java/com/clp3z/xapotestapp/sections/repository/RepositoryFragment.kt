@@ -9,12 +9,17 @@ import com.clp3z.xapotestapp.base.factory.RepositoryViewModelFactory
 import com.clp3z.xapotestapp.base.generic.GenericFragment
 import com.clp3z.xapotestapp.databinding.FragmentRepositoryBinding
 import com.clp3z.xapotestapp.repository.database.client.LocalDatabase
+import com.clp3z.xapotestapp.sections.repository.domain.RepositoryDAO
+import com.clp3z.xapotestapp.sections.repository.domain.RepositoryModel
+import com.clp3z.xapotestapp.sections.repository.presentation.RepositoryView
+import com.clp3z.xapotestapp.sections.repository.presentation.RepositoryViewModel
 
 /**
  * Created by Clelia López on 02/26/21
  */
 class RepositoryFragment
     : GenericFragment<FragmentRepositoryBinding, RepositoryViewModel>() {
+
 
     private val application = requireActivity().application
     private val repositoryRoomDAO = LocalDatabase.getInstance(application).repositoryRoomDAO

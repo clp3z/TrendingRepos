@@ -1,8 +1,7 @@
-package com.clp3z.xapotestapp.sections.home.adapter
+package com.clp3z.xapotestapp.sections.home.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.clp3z.xapotestapp.R
@@ -11,14 +10,14 @@ import com.clp3z.xapotestapp.repository.model.RepositoryItemQuery
 import com.squareup.picasso.Picasso
 
 /**
- * Created by Clelia López on 10/11/20
+ * Created by Clelia López on 02/26/21
  */
 class RepositoryAdapter(private val clickListener: RepositoryListener):
-    ListAdapter<RepositoryItemQuery, RepositoryAdapter.ViewHolder>(RepositoryDiffCallback()){
+    ListAdapter<RepositoryItemQuery, RepositoryAdapter.ViewHolder>(RepositoryDiffCallback()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder.from(parent)
+            ViewHolder.from(parent)
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -55,27 +54,5 @@ class RepositoryAdapter(private val clickListener: RepositoryListener):
                 return ViewHolder(binding)
             }
         }
-    }
-
-    class RepositoryDiffCallback: DiffUtil.ItemCallback<RepositoryItemQuery>() {
-
-        /**
-         * Two items are the same if their Id values are equal
-         */
-        override fun areItemsTheSame(oldItem: RepositoryItemQuery, newItem: RepositoryItemQuery) =
-            newItem.id == oldItem.id
-
-        /**
-         * Two items are the same if they have the same value, oldItem == newItem.
-         * Validation with .equals (via data class implementation)
-         */
-        override fun areContentsTheSame(oldItem: RepositoryItemQuery, newItem: RepositoryItemQuery) =
-            newItem == oldItem
-    }
-}
-
-class RepositoryListener(val clickListener: (id: Int) -> Unit) {
-    fun onClick(repository: RepositoryItemQuery) {
-        clickListener(repository.id)
     }
 }

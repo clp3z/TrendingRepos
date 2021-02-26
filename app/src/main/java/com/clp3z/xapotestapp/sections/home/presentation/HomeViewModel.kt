@@ -1,9 +1,10 @@
-package com.clp3z.xapotestapp.sections.home
+package com.clp3z.xapotestapp.sections.home.presentation
 
 import android.app.Application
 import androidx.lifecycle.Observer
 import com.clp3z.xapotestapp.base.generic.GenericViewModel
 import com.clp3z.xapotestapp.repository.model.RepositoryItemQuery
+import com.clp3z.xapotestapp.sections.home.domain.HomeModel
 
 /**
  * Created by Clelia López on 02/26/21

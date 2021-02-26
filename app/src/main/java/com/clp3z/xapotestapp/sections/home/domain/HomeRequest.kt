@@ -1,4 +1,4 @@
-package com.clp3z.xapotestapp.sections.home
+package com.clp3z.xapotestapp.sections.home.domain
 
 import com.clp3z.xapotestapp.repository.network.client.RestServerAPI
 import com.clp3z.xapotestapp.repository.network.schema.RepositoryResponse
@@ -21,7 +21,7 @@ class HomeRequest(private val webservice: RestServerAPI) {
             try {
                 val response = webservice.getRepositories(page)
                 if (response.isSuccessful && response.body() != null) {
-                    return@withContext Result.Success(response.body()!!.repositories)
+                    return@withContext Result.Success(response.body()!!.items)
                 } else {
                     return@withContext Result.Failure
                 }

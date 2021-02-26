@@ -7,11 +7,11 @@
     <data>
         <variable
             name="repository"
-            type="com.clp3z.xapotestapp.model.RepositoryItemQuery" />
+            type="com.clp3z.xapotestapp.repository.model.RepositoryItemQuery" />
 
         <variable
             name="clickListener"
-            type="com.clp3z.xapotestapp.sections.home.adapter.RepositoryListener" />
+            type="com.clp3z.xapotestapp.sections.home.presentation.adapter.RepositoryListener" />
     </data>
 
     <androidx.cardview.widget.CardView

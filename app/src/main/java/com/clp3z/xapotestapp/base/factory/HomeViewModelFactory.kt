@@ -3,8 +3,8 @@ package com.clp3z.xapotestapp.base.factory
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.clp3z.xapotestapp.sections.home.HomeModel
-import com.clp3z.xapotestapp.sections.home.HomeViewModel
+import com.clp3z.xapotestapp.sections.home.domain.HomeModel
+import com.clp3z.xapotestapp.sections.home.presentation.HomeViewModel
 
 /**
  * Created by Clelia López on 02/26/21

@@ -1,4 +1,4 @@
-package com.clp3z.xapotestapp.sections.repository
+package com.clp3z.xapotestapp.sections.repository.presentation
 
 import android.app.Application
 import androidx.lifecycle.LiveData
@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.Transformations
 import com.clp3z.xapotestapp.base.generic.GenericViewModel
 import com.clp3z.xapotestapp.repository.model.RepositoryQuery
+import com.clp3z.xapotestapp.sections.repository.domain.RepositoryModel
 
 /**
  * Created by Clelia López on 02/26/21

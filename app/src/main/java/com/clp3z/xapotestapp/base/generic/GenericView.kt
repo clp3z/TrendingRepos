@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import com.clp3z.xapotestapp.base.interfaces.ViewMethods
 
-
+/**
+ * Created by Clelia López on 02/26/21
+ */
 abstract class GenericView<B: ViewDataBinding, VM: ViewModel> (
     protected val layoutInflater: LayoutInflater,
     protected val container: ViewGroup?,

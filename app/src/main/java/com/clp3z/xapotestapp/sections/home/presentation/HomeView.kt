@@ -1,4 +1,4 @@
-package com.clp3z.xapotestapp.sections.home
+package com.clp3z.xapotestapp.sections.home.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,14 +8,18 @@ import com.clp3z.xapotestapp.base.generic.GenericView
 import com.clp3z.xapotestapp.base.util.Navigation
 import com.clp3z.xapotestapp.databinding.FragmentHomeBinding
 import com.clp3z.xapotestapp.repository.model.RepositoryItemQuery
-import com.clp3z.xapotestapp.sections.home.adapter.RepositoryAdapter
-import com.clp3z.xapotestapp.sections.home.adapter.RepositoryListener
+import com.clp3z.xapotestapp.sections.home.HomeFragment
+import com.clp3z.xapotestapp.sections.home.presentation.adapter.RepositoryAdapter
+import com.clp3z.xapotestapp.sections.home.presentation.adapter.RepositoryListener
 
+/**
+ * Created by Clelia López on 02/26/21
+ */
 class HomeView(
-    layoutInflater: LayoutInflater,
-    container: ViewGroup?,
-    viewModel: HomeViewModel,
-    fragment: HomeFragment
+        layoutInflater: LayoutInflater,
+        container: ViewGroup?,
+        viewModel: HomeViewModel,
+        fragment: HomeFragment
 ):
     GenericView<FragmentHomeBinding, HomeViewModel>(
         layoutInflater,

@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.clp3z.xapotestapp.sections.repository.RepositoryViewModel" />
+            type="com.clp3z.xapotestapp.sections.repository.presentation.RepositoryViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -107,7 +107,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     tools:text="10400"
-                    android:text="@{Integer.toString(viewModel.forks)}"
+                    android:text="@{viewModel.forks}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/watchersTextView"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -120,7 +120,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     tools:text="2678"
-                    android:text="@{Integer.toString(viewModel.watchers)}"
+                    android:text="@{viewModel.watchers}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/issuesTextView"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -133,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     tools:text="148"
-                    android:text="@{Integer.toString(viewModel.issues)}"
+                    android:text="@{viewModel.issues}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
