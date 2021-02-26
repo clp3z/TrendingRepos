@@ -1,57 +1,36 @@
-package com.clp3z.xapotestapp.sections.home_old
+package com.clp3z.xapotestapp.sections.home
 
 import android.app.Application
-import com.clp3z.xapotestapp.repository.database.client.RepositoryDAO
-import com.clp3z.xapotestapp.base.general.Logger
-import com.clp3z.xapotestapp.base.general.ModelState
+import androidx.lifecycle.Observer
 import com.clp3z.xapotestapp.base.generic.GenericViewModel
+import com.clp3z.xapotestapp.model.RepositoryItemQuery
 
 /**
- * Created by Clelia López on 10/21/20
+ * Created by Clelia López on 02/26/21
  */
 class HomeViewModel(
     application: Application,
-    database: RepositoryDAO
+    homeModel: HomeModel,
 ):
-    GenericViewModel<HomeModel>(application, HomeModel(database, application)) {
+    GenericViewModel<HomeModel>(application, homeModel) {
 
-    /**
-     * Retrieves repositories and updates interface via LiveData
-     */
-    val repositories = model.getRepositories()
+    lateinit var githubRepositories: List<RepositoryItemQuery>
 
-    /**
-     * Current page on web service
-     */
-    private var page = 1
-
-
-    init {
-        tag = javaClass.simpleName
-        logger = Logger(tag)
-    }
+    private lateinit var repositoriesObserver: Observer<List<RepositoryItemQuery>>
 
 
     override fun fetch() {
-        model.repositoryList.observeForever { repositoryList ->
-            uiScope.launch {
-                model.insertAll(repositoryList)
-            }
-
-            model.setStateValue(ModelState.AVAILABLE)
+        repositoriesObserver = Observer<List<RepositoryItemQuery>> {
+            githubRepositories = it
         }
     }
 
-    fun fetch(onPagination: Boolean) {
-        page += 1
-        model.fetch(onPagination, this.page)
-
-        logger.log("fetch", "It's fetching on page = $page")
+    override fun addModelObservers() {
+        model.githubRepositories.observeForever(repositoriesObserver)
     }
 
-    override fun handleClick(id: Int) {
-        // Does nothing
+    override fun onCleared() {
+        model.githubRepositories.removeObserver(repositoriesObserver)
+        super.onCleared()
     }
-
-    fun getState() = model.state
 }
