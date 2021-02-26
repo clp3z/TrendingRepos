@@ -1,6 +1,6 @@
 package com.clp3z.xapotestapp.base.network
 
-import com.clp3z.xapotestapp.repository.network.RepositoriesResponse
+import com.clp3z.xapotestapp.repository.network.schema.RepositoriesResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

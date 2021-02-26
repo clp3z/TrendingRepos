@@ -1,18 +1,17 @@
-package com.clp3z.xapotestapp.home
+package com.clp3z.xapotestapp.sections.home_old
 
 import android.app.Application
-import com.clp3z.xapotestapp.base.database.LocalDatabaseDAO
+import com.clp3z.xapotestapp.repository.database.client.RepositoryDAO
 import com.clp3z.xapotestapp.base.general.Logger
 import com.clp3z.xapotestapp.base.general.ModelState
 import com.clp3z.xapotestapp.base.generic.GenericViewModel
-import kotlinx.coroutines.launch
 
 /**
  * Created by Clelia López on 10/21/20
  */
 class HomeViewModel(
     application: Application,
-    database: LocalDatabaseDAO
+    database: RepositoryDAO
 ):
     GenericViewModel<HomeModel>(application, HomeModel(database, application)) {
 
@@ -28,8 +27,8 @@ class HomeViewModel(
 
 
     init {
-        TAG = javaClass.simpleName
-        logger = Logger(TAG)
+        tag = javaClass.simpleName
+        logger = Logger(tag)
     }
 
 

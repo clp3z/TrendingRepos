@@ -1,16 +1,16 @@
-package com.clp3z.xapotestapp.base.database
+package com.clp3z.xapotestapp.repository.database.client
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.clp3z.xapotestapp.base.general.DATABASE_NAME
-import com.clp3z.xapotestapp.repository.database.Repository
+import com.clp3z.xapotestapp.repository.database.entity.Repository
 
 /**
  * Created by Clelia López on 10/10/20
  */
-@Database(entities = [Repository::class], version = 1,  exportSchema = false)
+a@Database(entities = [Repository::class], version = 1,  exportSchema = false)
 abstract class LocalDatabase : RoomDatabase() {
 
     // Associated the DAO with this database
@@ -28,12 +28,12 @@ abstract class LocalDatabase : RoomDatabase() {
 
                 if (instance == null) {
                     instance = Room.databaseBuilder(
-                        context.applicationContext,
-                        LocalDatabase::class.java,
-                        DATABASE_NAME
+                            context.applicationContext,
+                            LocalDatabase::class.java,
+                            DATABASE_NAME
                     )
-                        .fallbackToDestructiveMigration()
-                        .build()
+                            .fallbackToDestructiveMigration()
+                            .build()
                 }
 
                 INSTANCE = instance

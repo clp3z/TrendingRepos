@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.clp3z.xapotestapp.repo.RepoViewModel" />
+            type="com.clp3z.xapotestapp.sections.repository.RepositoryViewModelR" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -28,7 +28,7 @@
                 android:layout_height="match_parent"
                 android:padding="16dp">
 
-                <com.clp3z.xapotestapp.base.customview.CircleImageView
+                <com.clp3z.xapotestapp.base.cutom.CircleImageView
                     android:id="@+id/avatarImageView"
                     android:layout_width="100dp"
                     android:layout_height="100dp"

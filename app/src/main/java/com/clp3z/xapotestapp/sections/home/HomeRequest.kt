@@ -2,8 +2,8 @@ package com.clp3z.xapotestapp.repository.network
 
 import com.clp3z.xapotestapp.base.interfaces.Listener
 import com.clp3z.xapotestapp.base.general.Logger
-import com.clp3z.xapotestapp.base.network.Client
-import com.clp3z.xapotestapp.base.network.ServerRequestStrategy
+import com.clp3z.xapotestapp.repository.network.client.Client
+import com.clp3z.xapotestapp.repository.network.schema.RepositoriesResponse
 
 /**
  * Created by Clelia López on 10/10/20

@@ -1,8 +1,8 @@
-package com.clp3z.xapotestapp.repo
+package com.clp3z.xapotestapp.sections.repository
 
-import com.clp3z.xapotestapp.base.database.LocalDatabaseDAO
+import com.clp3z.xapotestapp.repository.database.client.LocalDatabaseDAO
 import com.clp3z.xapotestapp.base.generic.GenericModel
-import com.clp3z.xapotestapp.repository.database.RepositoryQuery
+import com.clp3z.xapotestapp.model.RepositoryQuery
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

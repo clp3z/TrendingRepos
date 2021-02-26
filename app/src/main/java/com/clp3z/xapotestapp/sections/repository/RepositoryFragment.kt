@@ -1,4 +1,4 @@
-package com.clp3z.xapotestapp.repo
+package com.clp3z.xapotestapp.sections.repository
 
 import android.os.Bundle
 import android.view.LayoutInflater

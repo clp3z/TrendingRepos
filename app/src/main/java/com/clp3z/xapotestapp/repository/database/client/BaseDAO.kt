@@ -1,4 +1,4 @@
-package com.clp3z.xapotestapp.base.database
+package com.clp3z.xapotestapp.repository.database.client
 
 import androidx.room.Delete
 import androidx.room.Insert

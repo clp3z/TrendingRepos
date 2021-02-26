@@ -1,15 +1,15 @@
-package com.clp3z.xapotestapp.home
+package com.clp3z.xapotestapp.sections.home
 
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.clp3z.xapotestapp.base.database.LocalDatabaseDAO
+import com.clp3z.xapotestapp.repository.database.client.LocalDatabaseDAO
 import com.clp3z.xapotestapp.base.general.*
 import com.clp3z.xapotestapp.base.generic.GenericModel
 import com.clp3z.xapotestapp.base.interfaces.Listener
-import com.clp3z.xapotestapp.repository.database.Repository
+import com.clp3z.xapotestapp.repository.database.entity.Repository
 import com.clp3z.xapotestapp.repository.network.RepositoriesRequest
-import com.clp3z.xapotestapp.repository.network.RepositoriesResponse
+import com.clp3z.xapotestapp.repository.network.schema.RepositoriesResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -44,8 +44,8 @@ class HomeModel(
 
 
     init {
-        TAG = javaClass.simpleName
-        logger = Logger(TAG)
+        tag = javaClass.simpleName
+        logger = Logger(tag)
 
         fetch()
     }
