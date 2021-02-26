@@ -1,4 +1,4 @@
-package com.clp3z.xapotestapp.view
+package com.clp3z.xapotestapp.sections.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,8 +8,6 @@ import com.clp3z.xapotestapp.base.general.Navigation
 import com.clp3z.xapotestapp.base.generic.GenericView
 import com.clp3z.xapotestapp.databinding.FragmentHomeBinding
 import com.clp3z.xapotestapp.model.RepositoryItemQuery
-import com.clp3z.xapotestapp.sections.home.HomeViewModel
-import com.clp3z.xapotestapp.sections.home.HomeFragment
 import com.clp3z.xapotestapp.sections.home.adapter.RepositoryAdapter
 import com.clp3z.xapotestapp.sections.home.adapter.RepositoryListener
 
@@ -35,15 +33,14 @@ class HomeView(
     private val lastVisibleItemPosition get() = layoutManager.findLastVisibleItemPosition()
 
 
-    init {
+    // TODO: debug to check which init is executed first
+    override fun initialize() {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = fragment
-
-        initializeView()
     }
 
-    fun initializeView() {
+    init {
         binding.recyclerView.adapter = adapter
 
         binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -64,7 +61,7 @@ class HomeView(
     }
 
 
-    // TODO: moved this to HomeFragment
+    // TODO: this a Navigation even, so it should be on HomeFragment
     private fun onItemSelected(id: Int) =
-            Navigation.ToRepoFragment(id).from(fragment)
+        Navigation.ToRepoFragment(id).from(fragment)
 }
