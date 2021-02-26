@@ -8,13 +8,12 @@ import com.clp3z.xapotestapp.base.general.DATABASE_NAME
 import com.clp3z.xapotestapp.repository.database.entity.Repository
 
 /**
- * Created by Clelia López on 10/10/20
+ * Created by Clelia López on 02/26/21
  */
-a@Database(entities = [Repository::class], version = 1,  exportSchema = false)
+@Database(entities = [Repository::class], version = 1,  exportSchema = false)
 abstract class LocalDatabase : RoomDatabase() {
 
-    // Associated the DAO with this database
-    abstract val localDatabaseDao: LocalDatabaseDAO
+    abstract val repositoryRoomDAO: RepositoryRoomDAO
 
     companion object {
 

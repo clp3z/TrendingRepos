@@ -1,7 +1,7 @@
 package com.clp3z.xapotestapp.base.util
 
-import com.clp3z.xapotestapp.repository.database.Repository
-import com.clp3z.xapotestapp.repository.network.RepositoryResponse
+import com.clp3z.xapotestapp.repository.database.entity.Repository
+import com.clp3z.xapotestapp.repository.network.schema.RepositoryResponse
 
 /**
  * Created by Clelia López on 02/26/21

@@ -1,13 +1,13 @@
-package com.clp3z.xapotestapp.repository.database
+package com.clp3z.xapotestapp.repository.database.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.clp3z.xapotestapp.repository.network.OwnerResponse
+import com.clp3z.xapotestapp.repository.network.schema.OwnerResponse
 
 /**
- * Created by Clelia López on 10/9/20
+ * Created by Clelia López on 02/26/21
  */
 @Entity(tableName = "repository_table")
 data class Repository (

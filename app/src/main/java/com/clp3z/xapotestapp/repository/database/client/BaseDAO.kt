@@ -6,9 +6,9 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Update
 
 /**
- * Created by Clelia López on 10/20/20
+ * Created by Clelia López on 02/26/21
  */
-interface DatabaseDAO<T> {
+interface BaseDAO<T> {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(vararg item: T)

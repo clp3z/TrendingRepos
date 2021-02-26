@@ -1,9 +1,9 @@
-package com.clp3z.xapotestapp.repository.network
+package com.clp3z.xapotestapp.repository.network.schema
 
 import com.google.gson.annotations.SerializedName
 
 /**
- * Created by Clelia López on 10/9/20
+ * Created by Clelia López on 02/26/21
  */
 data class OwnerResponse (
 
