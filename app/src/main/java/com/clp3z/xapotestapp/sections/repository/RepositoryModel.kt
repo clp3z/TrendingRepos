@@ -1,29 +1,24 @@
 package com.clp3z.xapotestapp.sections.repository
 
-import com.clp3z.xapotestapp.repository.database.client.LocalDatabaseDAO
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.clp3z.xapotestapp.base.generic.GenericModel
 import com.clp3z.xapotestapp.model.RepositoryQuery
-
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.launch
 
 /**
- * Created by Clelia López on 10/19/20
+ * Created by Clelia López on 02/26/21
  */
-class RepoModel(
-    localDatabase: LocalDatabaseDAO,
-    id: Int
-)
-    : GenericModel<Int>(localDatabase, id) {
+class RepositoryModel(repository: RepositoryDAO)
+    : GenericModel<RepositoryDAO>(repository) {
+
+    private val _githubRepository = MutableLiveData<RepositoryQuery>()
+    val githubRepository: LiveData<RepositoryQuery> get() =  _githubRepository
 
 
     override fun fetch() {
-        // Does nothing
-    }
-
-    suspend fun getRepositoryById(): RepositoryQuery {
-        return withContext(Dispatchers.IO) {
-            localDatabase.getRepositoryById(param)
+        uiScope.launch {
+            _githubRepository.value = dataLayer.getRepositoryById()
         }
     }
 }

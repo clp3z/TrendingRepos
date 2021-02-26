@@ -1,27 +1,35 @@
 package com.clp3z.xapotestapp.base.generic
 
-import com.clp3z.xapotestapp.base.database.LocalDatabaseDAO
 import com.clp3z.xapotestapp.base.general.Logger
 import com.clp3z.xapotestapp.base.interfaces.ModelMethods
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 
 /**
- *  The model carries the business logic for an specific section of the application.
- *
- *  In this way, it represents the Domain layer and as such, it should be separated from the ViewModel,
- *  which is part of the Presentation layer.
- *
- * Created by Clelia López on 10/19/20
+ * Created by Clelia López on 02/26/21
  */
-@Suppress("PropertyName")
 abstract class GenericModel<T> (
-    protected val localDatabase: LocalDatabaseDAO,
-    protected val param: T
+    protected val dataLayer: T
 ):
     ModelMethods {
 
-    /**
-     * Logger
-     */
-    protected lateinit var TAG: String
+    protected lateinit var tagClass: String
     protected lateinit var logger: Logger
+
+    private val job: Job by lazy {
+        Job()
+    }
+
+    protected val uiScope: CoroutineScope by lazy {
+        CoroutineScope(Dispatchers.Main + job)
+    }
+
+    init {
+        this.fetch()
+    }
+
+    open fun onCleared() {
+        job.cancel()
+    }
 }

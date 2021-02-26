@@ -1,7 +1,7 @@
 package com.clp3z.xapotestapp.base.interfaces
 
 /**
- * Created by Clelia López on 10/20/20
+ * Created by Clelia López on 02/26/21
  */
 interface ModelMethods {
 
