@@ -4,7 +4,6 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.getproperly.properlyv2.classes.imagehandling.ProperlyHelper
 import com.squareup.picasso.Picasso
 
 /**
@@ -31,14 +30,17 @@ fun setTextViewVisibility(textView: TextView, value: String?) {
 
 @BindingAdapter("app:imageUrl")
 fun setImage(imageView: ImageView, url: String?) {
-    if (url != null) {
-        val context = imageView.context
-        if (url.isNotEmpty()) {
-            imageView.setImageBitmap(null)
-            ProperlyHelper.getPictureFile(context, url, ProperlyHelper.IMG_MIDDLE) { success, file ->
-                if (success)
-                    Picasso.with(context).load(file).into(imageView)
-            }
-        }
+    url?.let {
+        if (url.isNotEmpty())
+            Picasso.get().load(url).into(imageView)
     }
 }
+
+/*
+@BindingAdapter(value = ["imageUrl", "placeholder"], requireAll = true)
+fun setImageUrl(imageView: ImageView, url: String?, placeHolder: Drawable) {
+    url?.let {
+        if (url.isNotEmpty())
+            Picasso.get().load(url).placeholder(placeHolder).into(imageView)
+    }
+}*/

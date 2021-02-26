@@ -19,7 +19,7 @@ import com.clp3z.xapotestapp.R
 import kotlin.math.min
 
 /**
- * Created by Clelia López on 10/9/20
+ * Created by Clelia López on 02/26/21
  *
  * Created originally by: https://www.tutorialsbuzz.com/2019/10/android-circular-shape-imageview-kotlin.html
  */

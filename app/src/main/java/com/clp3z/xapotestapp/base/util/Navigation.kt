@@ -1,11 +1,11 @@
-package com.clp3z.xapotestapp.base.general
+package com.clp3z.xapotestapp.base.util
 
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.clp3z.xapotestapp.home.HomeFragmentDirections
+import com.clp3z.xapotestapp.sections.home.HomeFragmentDirections
 
 /**
- * Created by Clelia López on 9/23/20
+ * Created by Clelia López on 02/26/21
  */
 sealed class Navigation {
 
