@@ -6,11 +6,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 /**
- * Created by Clelia López on 10/10/20
+ * Created by Clelia López on 02/26/21
  */
-object Client {
+object RetrofitClient {
 
-    val webservice by lazy {
+    val webservice: RestServerAPI by lazy {
         getRetrofit(getOkHttpClient(getInterceptor())).create(RestServerAPI::class.java)
     }
 
