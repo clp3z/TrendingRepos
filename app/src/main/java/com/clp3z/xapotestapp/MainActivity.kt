@@ -9,7 +9,7 @@ import com.clp3z.xapotestapp.R
 import com.clp3z.xapotestapp.databinding.ActivityMainBinding
 
 /**
- * Created by Clelia López on 10/9/20
+ * Created by Clelia López on 02/26/21
  */
 class MainActivity: AppCompatActivity() {
 

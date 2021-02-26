@@ -1,6 +1,6 @@
 package com.clp3z.xapotestapp.sections.home
 
-import com.clp3z.xapotestapp.model.RepositoryItemQuery
+import com.clp3z.xapotestapp.repository.model.RepositoryItemQuery
 import com.clp3z.xapotestapp.repository.database.client.RepositoryRoomDAO
 import com.clp3z.xapotestapp.repository.database.entity.Repository
 import kotlinx.coroutines.Dispatchers

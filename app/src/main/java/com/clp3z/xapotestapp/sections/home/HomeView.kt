@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.clp3z.xapotestapp.base.general.Navigation
 import com.clp3z.xapotestapp.base.generic.GenericView
+import com.clp3z.xapotestapp.base.util.Navigation
 import com.clp3z.xapotestapp.databinding.FragmentHomeBinding
-import com.clp3z.xapotestapp.model.RepositoryItemQuery
+import com.clp3z.xapotestapp.repository.model.RepositoryItemQuery
 import com.clp3z.xapotestapp.sections.home.adapter.RepositoryAdapter
 import com.clp3z.xapotestapp.sections.home.adapter.RepositoryListener
 

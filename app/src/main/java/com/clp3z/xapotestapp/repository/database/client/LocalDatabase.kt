@@ -27,12 +27,12 @@ abstract class LocalDatabase : RoomDatabase() {
 
                 if (instance == null) {
                     instance = Room.databaseBuilder(
-                            context.applicationContext,
-                            LocalDatabase::class.java,
-                            DATABASE_NAME
+                        context.applicationContext,
+                        LocalDatabase::class.java,
+                        DATABASE_NAME
                     )
-                            .fallbackToDestructiveMigration()
-                            .build()
+                        .fallbackToDestructiveMigration()
+                        .build()
                 }
 
                 INSTANCE = instance

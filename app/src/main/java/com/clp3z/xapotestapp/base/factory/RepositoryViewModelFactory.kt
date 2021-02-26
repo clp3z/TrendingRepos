@@ -11,7 +11,7 @@ import com.clp3z.xapotestapp.sections.repository.RepositoryViewModel
  */
 class RepositoryViewModelFactory(
     private val application: Application,
-    private val repositoryModel: RepositoryModel
+    private val model: RepositoryModel
 ):
     ViewModelProvider.Factory {
 
@@ -19,7 +19,7 @@ class RepositoryViewModelFactory(
     override fun <T: ViewModel?> create(modelClass: Class<T>): T {
         return when (modelClass) {
             RepositoryViewModel::class.java ->
-                RepositoryViewModel(application, repositoryModel) as T
+                RepositoryViewModel(application, model) as T
 
             else ->
                 throw IllegalArgumentException("ViewModelFactory: Unknown ViewModel class")

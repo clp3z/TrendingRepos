@@ -3,7 +3,7 @@ package com.clp3z.xapotestapp.sections.home
 import android.app.Application
 import androidx.lifecycle.Observer
 import com.clp3z.xapotestapp.base.generic.GenericViewModel
-import com.clp3z.xapotestapp.model.RepositoryItemQuery
+import com.clp3z.xapotestapp.repository.model.RepositoryItemQuery
 
 /**
  * Created by Clelia López on 02/26/21

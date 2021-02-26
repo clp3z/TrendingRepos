@@ -3,7 +3,7 @@ package com.clp3z.xapotestapp.sections.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.clp3z.xapotestapp.base.generic.GenericModel
-import com.clp3z.xapotestapp.model.RepositoryItemQuery
+import com.clp3z.xapotestapp.repository.model.RepositoryItemQuery
 import kotlinx.coroutines.launch
 
 /**

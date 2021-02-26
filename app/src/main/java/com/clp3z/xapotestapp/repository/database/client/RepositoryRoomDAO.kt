@@ -2,8 +2,8 @@ package com.clp3z.xapotestapp.repository.database.client
 
 import androidx.room.Dao
 import androidx.room.Query
-import com.clp3z.xapotestapp.repository.database.RepositoryItemQuery
-import com.clp3z.xapotestapp.repository.database.RepositoryQuery
+import com.clp3z.xapotestapp.repository.model.RepositoryItemQuery
+import com.clp3z.xapotestapp.repository.model.RepositoryQuery
 import com.clp3z.xapotestapp.repository.database.entity.Repository
 
 /**

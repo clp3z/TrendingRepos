@@ -1,4 +1,4 @@
-package com.clp3z.xapotestapp.sections.home_old.adapter
+package com.clp3z.xapotestapp.sections.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.clp3z.xapotestapp.R
 import com.clp3z.xapotestapp.databinding.ListItemBinding
-import com.clp3z.xapotestapp.model.RepositoryItemQuery
+import com.clp3z.xapotestapp.repository.model.RepositoryItemQuery
 import com.squareup.picasso.Picasso
 
 /**
