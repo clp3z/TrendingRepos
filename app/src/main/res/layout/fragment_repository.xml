@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.clp3z.xapotestapp.sections.repository.RepositoryViewModelR" />
+            type="com.clp3z.xapotestapp.sections.repository.RepositoryViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -28,11 +28,12 @@
                 android:layout_height="match_parent"
                 android:padding="16dp">
 
-                <com.clp3z.xapotestapp.base.cutom.CircleImageView
+                <com.clp3z.xapotestapp.view.custom.CircleImageView
                     android:id="@+id/avatarImageView"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     tools:src="@drawable/ic_android"
+                    app:imageUrl="@{viewModel.avatar}"
                     app:border_color="@color/colorAccent"
                     app:border_width="2dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/roboto_bold"
-                    android:text="@{viewModel.repository.name}"
+                    android:text="@{viewModel.name}"
                     android:textAlignment="center"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -94,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     tools:text="@string/placeholder_description"
-                    android:text="@{viewModel.repository.description}"
+                    android:text="@{viewModel.description}"
                     android:textAlignment="center"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +107,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     tools:text="10400"
-                    android:text="@{Integer.toString(viewModel.repository.forks)}"
+                    android:text="@{Integer.toString(viewModel.forks)}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/watchersTextView"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -119,7 +120,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     tools:text="2678"
-                    android:text="@{Integer.toString(viewModel.repository.watchers)}"
+                    android:text="@{Integer.toString(viewModel.watchers)}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/issuesTextView"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -132,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     tools:text="148"
-                    android:text="@{Integer.toString(viewModel.repository.issues)}"
+                    android:text="@{Integer.toString(viewModel.issues)}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
