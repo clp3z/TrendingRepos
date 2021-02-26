@@ -1,26 +1,37 @@
-package com.clp3z.xapotestapp.repository.network
+package com.clp3z.xapotestapp.sections.home
 
-import com.clp3z.xapotestapp.base.interfaces.Listener
-import com.clp3z.xapotestapp.base.general.Logger
-import com.clp3z.xapotestapp.repository.network.client.Client
-import com.clp3z.xapotestapp.repository.network.schema.RepositoriesResponse
+import com.clp3z.xapotestapp.repository.network.client.RestServerAPI
+import com.clp3z.xapotestapp.repository.network.schema.RepositoryResponse
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /**
- * Created by Clelia López on 10/10/20
+ * Created by Clelia López on 02/26/21
  */
-class RepositoriesRequest(
-    parameters: Int,
-    returnCode: Int,
-    listener: Listener.OnServerResponseListener<RepositoriesResponse>
-):
-    ServerRequestStrategy<Int, RepositoriesResponse>(parameters, returnCode, listener) {
+class HomeRequest(private val webservice: RestServerAPI) {
 
-    init {
-        TAG = javaClass.simpleName
-        logger = Logger(TAG)
+    sealed class Result {
+        class Success(val repositories: List<RepositoryResponse>): Result()
+        object Failure: Result()
     }
 
-    override fun setCall() {
-        call = Client.getRestAPIService()?.getRepositories(parameter)
+    suspend fun getRepositories(page: Int): Result {
+        return withContext(Dispatchers.IO) {
+            try {
+                val response = webservice.getRepositories(page)
+                if (response.isSuccessful && response.body() != null) {
+                    return@withContext Result.Success(response.body()!!.repositories)
+                } else {
+                    return@withContext Result.Failure
+                }
+            } catch (exception: Throwable) {
+                if (exception !is CancellationException) {
+                    return@withContext Result.Failure
+                } else {
+                    throw exception
+                }
+            }
+        }
     }
 }
