@@ -1,7 +1,7 @@
-package com.clp3z.xapotestapp.repository.database
+package com.clp3z.xapotestapp.model
 
 /**
- * Created by Clelia López on 10/21/20
+ * Created by Clelia López on 02/26/21
  */
 data class RepositoryQuery (
     var id: Int,
