@@ -21,7 +21,7 @@ abstract class GenericView<B: ViewDataBinding, VM: ViewModel> (
 
     protected lateinit var binding: B
 
-    val root: View = binding.root
+    val root: View get() = binding.root
 
     init {
         this.initialize()

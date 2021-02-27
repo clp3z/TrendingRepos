@@ -12,7 +12,7 @@ import kotlinx.coroutines.withContext
 class RepositoryDAO (
     dao: RepositoryRoomDAO
 ):
-    GenericDAO<RepositoryRoomDAO>(dao){
+    GenericDAO<RepositoryRoomDAO>(dao) {
 
     suspend fun getRepositoryById(id: Int): RepositoryQuery {
         return withContext(Dispatchers.IO) {

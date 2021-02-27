@@ -21,14 +21,14 @@ class RepositoryFragment
     : GenericFragment<FragmentRepositoryBinding, RepositoryViewModel>() {
 
 
-    private val application = requireActivity().application
-    private val repositoryRoomDAO = LocalDatabase.getInstance(application).repositoryRoomDAO
+    private val application get() = requireActivity().application
+    private val repositoryRoomDAO get() = LocalDatabase.getInstance(application).repositoryRoomDAO
 
-    private val arguments = RepositoryFragmentArgs.fromBundle(requireArguments())
-    private val repositoryDAO = RepositoryDAO(repositoryRoomDAO)
-    private val model = RepositoryModel(repositoryDAO, arguments.id)
+    private val arguments get() = RepositoryFragmentArgs.fromBundle(requireArguments())
+    private val dao get() = RepositoryDAO(repositoryRoomDAO)
+    private val model get() = RepositoryModel(dao, arguments.id)
 
-    private val viewModelFactory = ViewModelFactory(application, model)
+    private val viewModelFactory get() =  ViewModelFactory(application, model)
     private val viewModel by viewModels<RepositoryViewModel> { viewModelFactory }
 
     private lateinit var view: RepositoryView

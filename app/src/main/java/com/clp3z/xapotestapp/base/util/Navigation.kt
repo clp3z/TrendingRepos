@@ -17,7 +17,8 @@ sealed class Navigation {
         override fun from(fragment: Fragment) {
             fragment
                 .findNavController()
-                .navigate(HomeFragmentDirections.actionHomeFragmentToRepositoryFragment(id))
+                .navigate(HomeFragmentDirections
+                .actionHomeFragmentToRepositoryFragment(id))
         }
     }
 }

@@ -12,7 +12,7 @@ import kotlinx.coroutines.withContext
 /**
  * Created by Clelia López on 02/26/21
  */
-class HomeRequest(
+class HomeNetworkRequest(
     retrofitWebservice: RetrofitWebservice
 ):
     GenericNetworkRequest<RepositoriesResponse>(retrofitWebservice) {

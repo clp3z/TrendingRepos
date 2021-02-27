@@ -1,10 +1,7 @@
 package com.clp3z.xapotestapp.base.generic
 
 import com.clp3z.xapotestapp.base.interfaces.RepositoryMethods
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.cancelChildren
+import kotlinx.coroutines.*
 
 /**
  * Created by Clelia López on 02/27/21
@@ -15,14 +12,15 @@ abstract class GenericRepository<DAO: GenericDAO<*>, NR: GenericNetworkRequest<*
 ):
     RepositoryMethods {
 
-    protected val coroutineScope = CoroutineScope(SupervisorJob()
-        + Dispatchers.Main.immediate)
+    private val job: Job by lazy {
+        Job()
+    }
 
-    init {
-        this.fetch()
+    protected val uiScope: CoroutineScope by lazy {
+        CoroutineScope(Dispatchers.Main + job)
     }
 
     fun onCleared() {
-        coroutineScope.coroutineContext.cancelChildren()
+        job.cancelChildren()
     }
 }

@@ -1,8 +1,10 @@
 package com.clp3z.xapotestapp.screen.home.domain
 
+import androidx.lifecycle.MutableLiveData
 import com.clp3z.xapotestapp.base.generic.GenericRepository
 import com.clp3z.xapotestapp.base.util.getRepositoryList
-import kotlinx.coroutines.*
+import com.clp3z.xapotestapp.repository.model.RepositoryItemQuery
+import kotlinx.coroutines.launch
 
 /**
  * Created by Clelia López on 02/26/21
@@ -10,35 +12,48 @@ import kotlinx.coroutines.*
 @Suppress("MoveVariableDeclarationIntoWhen")
 class HomeRepository(
     dao: HomeDAO,
-    request: HomeRequest
+    networkRequest: HomeNetworkRequest
 ):
-    GenericRepository<HomeDAO, HomeRequest>(
+    GenericRepository<HomeDAO, HomeNetworkRequest>(
         dao,
-        request
+        networkRequest
     ) {
 
-    private var currentPage: Int = 1
-
     // TODO: internet state verification pending
+
+    var repositories = MutableLiveData<List<RepositoryItemQuery>>()
+
+    private var currentPage = 1
+
+    init {
+        fetch()
+    }
 
     override fun fetch() {
         fetchRepositories(currentPage)
     }
 
     private fun fetchRepositories(page: Int) {
-        coroutineScope.launch {
+        uiScope.launch {
             // TODO: show download dialog
             try {
 
                 val result = networkRequest.getRepositories(page)
 
                 when (result) {
-                    is HomeRequest.Result.Success -> {
-                        val repositories = getRepositoryList(result.repositories)
-                        dao.insertAll(repositories)
+                    is HomeNetworkRequest.Result.Success -> {
+
+                        // Transform
+                        val values = getRepositoryList(result.repositories)
+
+                        // Insert
+                        dao.insertAll(values)
+
+                        // Expose
+                        repositories.value = dao.queryRepositories()
                     }
 
-                    is HomeRequest.Result.Failure -> onFetchFailed()
+                    is HomeNetworkRequest.Result.Failure -> onFetchFailed()
                 }
             } finally {
                 // TODO: hide download dialog
@@ -50,6 +65,4 @@ class HomeRepository(
     override fun onFetchFailed() {
         // TODO: report to Business Logic Layer so an appropriate action can be done
     }
-
-    suspend fun getRepositories() = dao.queryRepositories()
 }

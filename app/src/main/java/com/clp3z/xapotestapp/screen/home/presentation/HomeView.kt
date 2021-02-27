@@ -5,12 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.clp3z.xapotestapp.base.generic.GenericView
-import com.clp3z.xapotestapp.base.util.Navigation
+import com.clp3z.xapotestapp.base.interfaces.Listener
 import com.clp3z.xapotestapp.databinding.FragmentHomeBinding
 import com.clp3z.xapotestapp.repository.model.RepositoryItemQuery
 import com.clp3z.xapotestapp.screen.home.HomeFragment
-import com.clp3z.xapotestapp.screen.home.presentation.adapter.RepositoryAdapter
-import com.clp3z.xapotestapp.screen.home.presentation.adapter.RepositoryListener
 
 /**
  * Created by Clelia López on 02/26/21
@@ -19,7 +17,8 @@ class HomeView(
     layoutInflater: LayoutInflater,
     container: ViewGroup?,
     viewModel: HomeViewModel,
-    fragment: HomeFragment
+    fragment: HomeFragment,
+    private val listener: Listener.HomeViewListener
 ):
     GenericView<FragmentHomeBinding, HomeViewModel>(
         layoutInflater,
@@ -28,8 +27,8 @@ class HomeView(
         fragment
     ) {
 
-    private val adapter = RepositoryAdapter(RepositoryListener { id ->
-        onItemSelected(id)
+    private val adapter = RepositoryAdapter(RepositoryAdapter.RepositoryListener { id ->
+        listener.onItemSelected(id)
     })
 
     private val layoutManager = LinearLayoutManager(fragment.requireContext())
@@ -37,7 +36,6 @@ class HomeView(
     private val lastVisibleItemPosition get() = layoutManager.findLastVisibleItemPosition()
 
 
-    // TODO: debug to check which init is executed first
     override fun initialize() {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         binding.viewModel = viewModel
@@ -45,6 +43,7 @@ class HomeView(
     }
 
     init {
+        binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = adapter
 
         binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -52,10 +51,8 @@ class HomeView(
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(binding.recyclerView, newState)
                 val totalItemCount = recyclerView.layoutManager?.itemCount
-                if (totalItemCount == lastVisibleItemPosition + 1) {
-
-                    // TODO: require fetching from ViewModel
-                }
+                if (totalItemCount == lastVisibleItemPosition + 1)
+                    listener.onFetchEvent()
             }
         })
     }
@@ -63,9 +60,4 @@ class HomeView(
     fun addItems(items: List<RepositoryItemQuery>) {
         adapter.submitList(items)
     }
-
-
-    // TODO: this a Navigation even, so it should be on HomeFragment
-    private fun onItemSelected(id: Int) =
-        Navigation.ToRepoFragment(id).from(fragment)
 }

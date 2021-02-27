@@ -5,4 +5,8 @@ package com.clp3z.xapotestapp.base.interfaces
  */
 interface Listener {
 
+    interface HomeViewListener {
+        fun onFetchEvent()
+        fun onItemSelected(id: Int)
+    }
 }
