@@ -1,5 +1,6 @@
 package com.clp3z.xapotestapp.screen.home.domain
 
+import com.clp3z.xapotestapp.base.generic.GenericRepository
 import com.clp3z.xapotestapp.base.util.getRepositoryList
 import kotlinx.coroutines.*
 
@@ -8,21 +9,19 @@ import kotlinx.coroutines.*
  */
 @Suppress("MoveVariableDeclarationIntoWhen")
 class HomeRepository(
-    private val homeDAO: HomeDAO,
-    private val homeRequest: HomeRequest
-) {
-
-    private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+    dao: HomeDAO,
+    request: HomeRequest
+):
+    GenericRepository<HomeDAO, HomeRequest>(
+        dao,
+        request
+    ) {
 
     private var currentPage: Int = 1
 
     // TODO: internet state verification pending
 
-    init {
-        fetch()
-    }
-
-    private fun fetch() {
+    override fun fetch() {
         fetchRepositories(currentPage)
     }
 
@@ -30,32 +29,27 @@ class HomeRepository(
         coroutineScope.launch {
             // TODO: show download dialog
             try {
-                val result = homeRequest.getRepositories(page)
-                when (result) {
 
+                val result = networkRequest.getRepositories(page)
+
+                when (result) {
                     is HomeRequest.Result.Success -> {
                         val repositories = getRepositoryList(result.repositories)
-                        homeDAO.insertAll(repositories)
+                        dao.insertAll(repositories)
                     }
 
                     is HomeRequest.Result.Failure -> onFetchFailed()
                 }
             } finally {
                 // TODO: hide download dialog
-
             }
         }
         currentPage += 1
     }
 
-
-    private fun onFetchFailed() {
+    override fun onFetchFailed() {
         // TODO: report to Business Logic Layer so an appropriate action can be done
     }
 
-    suspend fun getRepositories() = homeDAO.queryRepositories()
-
-    fun onCleared() {
-        coroutineScope.coroutineContext.cancelChildren()
-    }
+    suspend fun getRepositories() = dao.queryRepositories()
 }
