@@ -9,8 +9,11 @@ import kotlinx.coroutines.launch
 /**
  * Created by Clelia López on 02/26/21
  */
-class RepositoryModel(repositoryDAO: RepositoryDAO)
-    : GenericModel<RepositoryDAO>(repositoryDAO) {
+class RepositoryModel(
+    dao: RepositoryDAO,
+    private val id: Int
+):
+    GenericModel<RepositoryDAO>(dao) {
 
     private val _githubRepository = MutableLiveData<RepositoryQuery>()
     val githubRepository: LiveData<RepositoryQuery> get() =  _githubRepository
@@ -18,7 +21,7 @@ class RepositoryModel(repositoryDAO: RepositoryDAO)
 
     override fun fetch() {
         uiScope.launch {
-            _githubRepository.value = dataLayer.getRepositoryById()
+            _githubRepository.value = dataLayer.getRepositoryById(id)
         }
     }
 }

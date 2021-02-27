@@ -16,10 +16,10 @@ import com.clp3z.xapotestapp.screen.home.presentation.adapter.RepositoryListener
  * Created by Clelia López on 02/26/21
  */
 class HomeView(
-        layoutInflater: LayoutInflater,
-        container: ViewGroup?,
-        viewModel: HomeViewModel,
-        fragment: HomeFragment
+    layoutInflater: LayoutInflater,
+    container: ViewGroup?,
+    viewModel: HomeViewModel,
+    fragment: HomeFragment
 ):
     GenericView<FragmentHomeBinding, HomeViewModel>(
         layoutInflater,

@@ -9,13 +9,16 @@ import kotlinx.coroutines.launch
 /**
  * Created by Clelia López on 02/26/21
  */
-class HomeModel(repository: HomeRepository)
-    : GenericModel<HomeRepository>(repository) {
+class HomeModel(
+    repository: HomeRepository
+):
+    GenericModel<HomeRepository>(repository) {
 
     private var _githubRepositories = MutableLiveData<List<RepositoryItemQuery>>()
     val githubRepositories: LiveData<List<RepositoryItemQuery>>
         get() = _githubRepositories
 
+    // TODO: Observation needed to know when data is populated
 
     override fun fetch() {
         uiScope.launch {

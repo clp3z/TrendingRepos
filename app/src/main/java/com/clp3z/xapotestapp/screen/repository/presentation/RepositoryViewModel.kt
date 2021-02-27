@@ -16,7 +16,10 @@ class RepositoryViewModel(
     application: Application,
     repositoryModel: RepositoryModel
 ):
-    GenericViewModel<RepositoryModel>(application, repositoryModel) {
+    GenericViewModel<RepositoryModel>(
+        application,
+        repositoryModel
+    ) {
 
 
     private var _name = MutableLiveData<String>()

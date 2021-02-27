@@ -9,7 +9,7 @@ import retrofit2.http.Query
 /**
  * Created by Clelia López on 02/26/21
  */
-interface RestServerAPI {
+interface RetrofitWebservice {
 
     // https://api.github.com/search/repositories?q=language:kotlin&sort=stars&order=desc&per_page=10&page=1
 

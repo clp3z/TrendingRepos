@@ -10,13 +10,13 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 object RetrofitClient {
 
-    val webservice: RestServerAPI by lazy {
-        getRetrofit(getOkHttpClient(getInterceptor())).create(RestServerAPI::class.java)
+    val WEBSERVICE: RetrofitWebservice by lazy {
+        getRetrofit(getOkHttpClient(getInterceptor())).create(RetrofitWebservice::class.java)
     }
 
     private fun getInterceptor(): HttpLoggingInterceptor {
         val loggingInterceptor = HttpLoggingInterceptor()
-        loggingInterceptor.level = RestServerAPI.loggingInterceptor
+        loggingInterceptor.level = RetrofitWebservice.loggingInterceptor
         return loggingInterceptor
     }
 
@@ -28,7 +28,7 @@ object RetrofitClient {
 
     private fun getRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
-        .baseUrl(RestServerAPI.host)
+        .baseUrl(RetrofitWebservice.host)
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()

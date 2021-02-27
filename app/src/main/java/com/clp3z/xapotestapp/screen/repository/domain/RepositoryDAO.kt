@@ -10,12 +10,11 @@ import kotlinx.coroutines.withContext
  * Created by Clelia López on 02/26/21
  */
 class RepositoryDAO (
-    dao: RepositoryRoomDAO,
-    private val id: Int
+    dao: RepositoryRoomDAO
 ):
     GenericDAO<RepositoryRoomDAO>(dao){
 
-    suspend fun getRepositoryById(): RepositoryQuery {
+    suspend fun getRepositoryById(id: Int): RepositoryQuery {
         return withContext(Dispatchers.IO) {
             roomDAO.getRepositoryById(id)
         }

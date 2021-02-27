@@ -34,13 +34,15 @@ class HomeRepository(
                 when (result) {
 
                     is HomeRequest.Result.Success -> {
-                        homeDAO.insertAll(getRepositoryList(result.repositories))
+                        val repositories = getRepositoryList(result.repositories)
+                        homeDAO.insertAll(repositories)
                     }
 
                     is HomeRequest.Result.Failure -> onFetchFailed()
                 }
             } finally {
                 // TODO: hide download dialog
+
             }
         }
         currentPage += 1
