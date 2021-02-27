@@ -1,4 +1,4 @@
-package com.clp3z.xapotestapp.sections.repository.domain
+package com.clp3z.xapotestapp.screen.repository.domain
 
 import com.clp3z.xapotestapp.repository.model.RepositoryQuery
 import com.clp3z.xapotestapp.repository.database.client.RepositoryRoomDAO

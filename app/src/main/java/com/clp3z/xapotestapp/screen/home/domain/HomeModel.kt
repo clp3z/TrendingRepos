@@ -1,4 +1,4 @@
-package com.clp3z.xapotestapp.sections.home.domain
+package com.clp3z.xapotestapp.screen.home.domain
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

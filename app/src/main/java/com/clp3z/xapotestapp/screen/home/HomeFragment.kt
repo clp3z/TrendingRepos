@@ -1,4 +1,4 @@
-package com.clp3z.xapotestapp.sections.home
+package com.clp3z.xapotestapp.screen.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,11 +10,11 @@ import com.clp3z.xapotestapp.base.generic.GenericFragment
 import com.clp3z.xapotestapp.databinding.FragmentHomeBinding
 import com.clp3z.xapotestapp.repository.database.client.LocalDatabase
 import com.clp3z.xapotestapp.repository.network.client.RetrofitClient
-import com.clp3z.xapotestapp.sections.home.domain.HomeDAO
-import com.clp3z.xapotestapp.sections.home.domain.HomeModel
-import com.clp3z.xapotestapp.sections.home.domain.HomeRepository
-import com.clp3z.xapotestapp.sections.home.domain.HomeRequest
-import com.clp3z.xapotestapp.sections.home.presentation.*
+import com.clp3z.xapotestapp.screen.home.domain.HomeDAO
+import com.clp3z.xapotestapp.screen.home.domain.HomeModel
+import com.clp3z.xapotestapp.screen.home.domain.HomeRepository
+import com.clp3z.xapotestapp.screen.home.domain.HomeRequest
+import com.clp3z.xapotestapp.screen.home.presentation.*
 
 /**
  * Created by Clelia López on 10/21/20

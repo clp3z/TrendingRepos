@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.clp3z.xapotestapp.sections.home.presentation.HomeViewModel" />
+            type="com.clp3z.xapotestapp.screen.home.presentation.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

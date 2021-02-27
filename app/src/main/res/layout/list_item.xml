@@ -11,7 +11,7 @@
 
         <variable
             name="clickListener"
-            type="com.clp3z.xapotestapp.sections.home.presentation.adapter.RepositoryListener" />
+            type="com.clp3z.xapotestapp.screen.home.presentation.adapter.RepositoryListener" />
     </data>
 
     <androidx.cardview.widget.CardView

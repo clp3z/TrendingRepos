@@ -1,4 +1,4 @@
-package com.clp3z.xapotestapp.sections.home.presentation.adapter
+package com.clp3z.xapotestapp.screen.home.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

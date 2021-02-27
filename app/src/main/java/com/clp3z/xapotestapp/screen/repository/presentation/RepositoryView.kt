@@ -1,10 +1,10 @@
-package com.clp3z.xapotestapp.sections.repository.presentation
+package com.clp3z.xapotestapp.screen.repository.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.clp3z.xapotestapp.base.generic.GenericView
 import com.clp3z.xapotestapp.databinding.FragmentRepositoryBinding
-import com.clp3z.xapotestapp.sections.repository.RepositoryFragment
+import com.clp3z.xapotestapp.screen.repository.RepositoryFragment
 
 class RepositoryView(
         layoutInflater: LayoutInflater,

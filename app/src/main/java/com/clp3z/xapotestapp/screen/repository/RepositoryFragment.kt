@@ -1,4 +1,4 @@
-package com.clp3z.xapotestapp.sections.repository
+package com.clp3z.xapotestapp.screen.repository
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,10 +9,10 @@ import com.clp3z.xapotestapp.base.factory.RepositoryViewModelFactory
 import com.clp3z.xapotestapp.base.generic.GenericFragment
 import com.clp3z.xapotestapp.databinding.FragmentRepositoryBinding
 import com.clp3z.xapotestapp.repository.database.client.LocalDatabase
-import com.clp3z.xapotestapp.sections.repository.domain.RepositoryDAO
-import com.clp3z.xapotestapp.sections.repository.domain.RepositoryModel
-import com.clp3z.xapotestapp.sections.repository.presentation.RepositoryView
-import com.clp3z.xapotestapp.sections.repository.presentation.RepositoryViewModel
+import com.clp3z.xapotestapp.screen.repository.domain.RepositoryDAO
+import com.clp3z.xapotestapp.screen.repository.domain.RepositoryModel
+import com.clp3z.xapotestapp.screen.repository.presentation.RepositoryView
+import com.clp3z.xapotestapp.screen.repository.presentation.RepositoryViewModel
 
 /**
  * Created by Clelia López on 02/26/21

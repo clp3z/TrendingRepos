@@ -1,4 +1,4 @@
-package com.clp3z.xapotestapp.sections.home.presentation
+package com.clp3z.xapotestapp.screen.home.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,9 +8,9 @@ import com.clp3z.xapotestapp.base.generic.GenericView
 import com.clp3z.xapotestapp.base.util.Navigation
 import com.clp3z.xapotestapp.databinding.FragmentHomeBinding
 import com.clp3z.xapotestapp.repository.model.RepositoryItemQuery
-import com.clp3z.xapotestapp.sections.home.HomeFragment
-import com.clp3z.xapotestapp.sections.home.presentation.adapter.RepositoryAdapter
-import com.clp3z.xapotestapp.sections.home.presentation.adapter.RepositoryListener
+import com.clp3z.xapotestapp.screen.home.HomeFragment
+import com.clp3z.xapotestapp.screen.home.presentation.adapter.RepositoryAdapter
+import com.clp3z.xapotestapp.screen.home.presentation.adapter.RepositoryListener
 
 /**
  * Created by Clelia López on 02/26/21

@@ -1,4 +1,4 @@
-package com.clp3z.xapotestapp.sections.home.domain
+package com.clp3z.xapotestapp.screen.home.domain
 
 import com.clp3z.xapotestapp.base.util.getRepositoryList
 import kotlinx.coroutines.*

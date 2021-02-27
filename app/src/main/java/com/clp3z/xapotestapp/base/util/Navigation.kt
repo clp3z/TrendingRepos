@@ -2,7 +2,7 @@ package com.clp3z.xapotestapp.base.util
 
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.clp3z.xapotestapp.sections.home.HomeFragmentDirections
+import com.clp3z.xapotestapp.screen.home.HomeFragmentDirections
 
 /**
  * Created by Clelia López on 02/26/21

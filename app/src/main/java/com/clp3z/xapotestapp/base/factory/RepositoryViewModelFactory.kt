@@ -3,8 +3,8 @@ package com.clp3z.xapotestapp.base.factory
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.clp3z.xapotestapp.sections.repository.domain.RepositoryModel
-import com.clp3z.xapotestapp.sections.repository.presentation.RepositoryViewModel
+import com.clp3z.xapotestapp.screen.repository.domain.RepositoryModel
+import com.clp3z.xapotestapp.screen.repository.presentation.RepositoryViewModel
 
 /**
  * Created by Clelia López on 02/26/21
