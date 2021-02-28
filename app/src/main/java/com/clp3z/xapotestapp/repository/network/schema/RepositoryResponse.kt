@@ -1,6 +1,6 @@
 package com.clp3z.xapotestapp.repository.network.schema
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 /**
  * Created by Clelia López on 02/26/21
@@ -9,7 +9,7 @@ data class RepositoryResponse (
 
     var id: Int,
 
-    @SerializedName("full_name")
+    @Json(name = "full_name")
     var name: String,
 
     var description: String?,
@@ -18,27 +18,27 @@ data class RepositoryResponse (
 
     var forks: Int,
 
-    @SerializedName("open_issues")
+    @Json(name = "open_issues")
     var issues: Int,
 
     var watchers: Int,
 
-    @SerializedName("created_at")
+    @Json(name = "created_at")
     var created: String,
 
-    @SerializedName("updated_at")
+    @Json(name = "updated_at")
     var updated: String,
 
-    @SerializedName("pushed_at")
+    @Json(name = "pushed_at")
     var pushed: String,
 
     var size: Int,
 
     var language: String,
 
-    @SerializedName("html_url")
+    @Json(name = "html_url")
     var url: String,
 
-    @SerializedName("contributors_url")
+    @Json(name = "contributors_url")
     var contributorsUrl: String
 )
