@@ -3,32 +3,38 @@ buildscript {
 
     ext {
         // Plugins
-        kotlin_version = "1.4.10"
+        kotlin_version = "1.4.31"
         gradle_version = "4.0.2"
 
-        // Kotlin + Jetpack
+        // Kotlin + JetPack
         core_version = "1.3.2"
-        coroutine_version = "1.3.7"
-        constraint_layout_version = "2.0.2"
+        constraint_layout_version = "2.0.4"
         lifecycle_extensions_version = "2.2.0"
-        navigation_version = "1.0.0"
-        room_version = "2.2.5"
 
-        // Testing
-        junit_version = "4.13"
-        android_junit_version = "1.1.2"
-        expresso_version = "3.3.0"
+        // Room
+        room_version = "2.2.6"
+
+        // Coroutines
+        coroutines_version = "1.4.2"
+
+        // Navigation
+        navigation_version = "1.0.0"
 
         // Square
         retrofit_version = "2.6.2"
         gson_converter_version = "2.6.2"
         gson_version = "2.6.1"
-        okhttp_version = "3.12.0"
+        okhttp_version = "4.5.0"
         picasso_version = "2.71828"
 
         // Kotlin Extensions
-        activity_version = "1.1.0"
-        fragment_version = "1.2.5"
+        activity_version = "1.2.0"
+        fragment_version = "1.3.0"
+
+        // Testing
+        junit_version = "4.13.1"
+        android_junit_version = "1.1.2"
+        expresso_version = "3.3.0"
     }
 
     repositories {
