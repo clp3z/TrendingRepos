@@ -23,7 +23,7 @@ class HomeNetworkRequest(
     }
 
     sealed class Result {
-        class Success(val repositories: List<RepositoryResponse>): Result()
+        class Success(val items: List<RepositoryResponse>): Result()
         object Failure: Result()
     }
 

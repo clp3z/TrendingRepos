@@ -25,8 +25,8 @@ class RepositoryViewModel(
     private var _name = MutableLiveData<String>()
     val name: LiveData<String> = Transformations.map(_name) { it.trim() }
 
-    private var _description = MutableLiveData<String>()
-    val description: LiveData<String> = Transformations.map(_description) { it.trim() }
+    private var _description = MutableLiveData<String?>()
+    val description: LiveData<String> = Transformations.map(_description) { it?.trim() ?: "" }
 
     private var _forks = MutableLiveData<Int>()
     val forks: LiveData<String> = Transformations.map(_forks) { it.toString() }

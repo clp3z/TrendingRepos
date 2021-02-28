@@ -20,10 +20,10 @@ abstract class GenericNetworkRequest<T>(
     protected val isResponseValid get() = response.isValid()
     protected val responseBody get() = response.getBody()
     protected val responseError get() = response.errorBody()
-    protected val errorMessage get() = throwable.localizedMessage
+    protected val errorMessage get() = throwable.localizedMessage ?: ""
 
 
     private fun <T> Response<T>.isValid() = isSuccessful && body() != null
 
-    private fun <T> Response<T>.getBody(): T = body()!!
+    private fun <T> Response<T>.getBody() = body()!!
 }

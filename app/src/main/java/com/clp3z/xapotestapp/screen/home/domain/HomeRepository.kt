@@ -2,8 +2,9 @@ package com.clp3z.xapotestapp.screen.home.domain
 
 import androidx.lifecycle.MutableLiveData
 import com.clp3z.xapotestapp.base.generic.GenericRepository
-import com.clp3z.xapotestapp.base.util.getRepositoryList
+import com.clp3z.xapotestapp.base.util.toRepository
 import com.clp3z.xapotestapp.repository.model.RepositoryItemQuery
+import com.clp3z.xapotestapp.screen.home.domain.HomeNetworkRequest.*
 import kotlinx.coroutines.launch
 
 /**
@@ -25,10 +26,6 @@ class HomeRepository(
 
     private var currentPage = 1
 
-    init {
-        fetch()
-    }
-
     override fun fetch() {
         fetchRepositories(currentPage)
     }
@@ -38,22 +35,21 @@ class HomeRepository(
             // TODO: show download dialog
             try {
 
+                // Request
                 val result = networkRequest.getRepositories(page)
 
                 when (result) {
-                    is HomeNetworkRequest.Result.Success -> {
 
-                        // Transform
-                        val values = getRepositoryList(result.repositories)
+                    is Result.Success -> {
 
-                        // Insert
-                        dao.insertAll(values)
+                        // Transform and Insert
+                        dao.insertAll(result.items.map { it.toRepository() })
 
                         // Expose
                         repositories.value = dao.queryRepositories()
                     }
 
-                    is HomeNetworkRequest.Result.Failure -> onFetchFailed()
+                    is Result.Failure -> onFetchFailed()
                 }
             } finally {
                 // TODO: hide download dialog

@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.clp3z.xapotestapp.repository.network.schema.OwnerResponse
+import com.clp3z.xapotestapp.repository.database.embedded.Owner
 
 /**
  * Created by Clelia López on 02/26/21
@@ -12,45 +12,45 @@ import com.clp3z.xapotestapp.repository.network.schema.OwnerResponse
 @Entity(tableName = "repository_table")
 data class Repository (
 
-    @PrimaryKey
+        @PrimaryKey
     var id: Int,
 
-    @ColumnInfo
+        @ColumnInfo
     var name: String,
 
-    @ColumnInfo
+        @ColumnInfo
     var description: String?,
 
-    @Embedded(prefix = "owner_")
-    var owner: OwnerResponse,
+        @Embedded(prefix = "owner_")
+    var owner: Owner,
 
-    @ColumnInfo
+        @ColumnInfo
     var forks: Int,
 
-    @ColumnInfo
+        @ColumnInfo
     var issues: Int,
 
-    @ColumnInfo
+        @ColumnInfo
     var watchers: Int,
 
-    @ColumnInfo
+        @ColumnInfo
     var created: String,
 
-    @ColumnInfo
+        @ColumnInfo
     var updated: String,
 
-    @ColumnInfo
+        @ColumnInfo
     var pushed: String,
 
-    @ColumnInfo
+        @ColumnInfo
     var size: Int,
 
-    @ColumnInfo
+        @ColumnInfo
     var language: String,
 
-    @ColumnInfo
+        @ColumnInfo
     var url: String,
 
-    @ColumnInfo
+        @ColumnInfo
     var contributorsUrl: String
 )
