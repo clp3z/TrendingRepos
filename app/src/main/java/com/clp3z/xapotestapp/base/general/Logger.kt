@@ -22,7 +22,7 @@ class Logger(private val tag: String) {
             Log.i("$app - $tag:", "$separator$method: $message")
     }
 
-    fun logDebug(method: String, message: String) {
+    fun logWarning(method: String, message: String) {
         if (isDebug)
             Log.d("$app - $tag:", "$separator$method: $message")
     }

@@ -2,7 +2,7 @@ package com.clp3z.xapotestapp.repository.network.client
 
 import com.clp3z.xapotestapp.repository.network.schema.RepositoriesResponse
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Response
+import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -14,7 +14,7 @@ interface RetrofitWebservice {
     // https://api.github.com/search/repositories?q=language:kotlin&sort=stars&order=desc&per_page=10&page=1
 
     @GET("search/repositories?q=language:kotlin&sort=forks&order=desc&per_page=10")
-    suspend fun getRepositories(@Query("page") page: Int): Response<RepositoriesResponse>
+    fun getRepositories(@Query("page") page: Int): Call<RepositoriesResponse?>
 
 
     companion object {

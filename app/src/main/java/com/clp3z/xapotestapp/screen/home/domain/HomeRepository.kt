@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import com.clp3z.xapotestapp.base.generic.GenericRepository
 import com.clp3z.xapotestapp.base.util.toRepository
 import com.clp3z.xapotestapp.repository.model.RepositoryItemQuery
-import com.clp3z.xapotestapp.screen.home.domain.HomeNetworkRequest.*
 import kotlinx.coroutines.launch
 
 /**
@@ -38,18 +37,16 @@ class HomeRepository(
                 // Request
                 val result = networkRequest.getRepositories(page)
 
-                when (result) {
+                if (result != null) {
 
-                    is Result.Success -> {
+                    // Transform and Insert
+                    dao.insertAll(result.items.map { it.toRepository() })
 
-                        // Transform and Insert
-                        dao.insertAll(result.items.map { it.toRepository() })
+                    // Expose
+                    repositories.value = dao.queryRepositories()
 
-                        // Expose
-                        repositories.value = dao.queryRepositories()
-                    }
-
-                    is Result.Failure -> onFetchFailed()
+                } else {
+                    onFetchFailed()
                 }
             } finally {
                 // TODO: hide download dialog

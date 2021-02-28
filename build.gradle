@@ -24,7 +24,7 @@ buildscript {
         // Coroutines
         coroutines_version = "1.4.2"
 
-        // Retrofit
+        // Retrofit + OkHttp + Moshi
         retrofit_version = "2.6.2"
         okhttp_version = "4.5.0"
         moshi_version = "1.11.0"

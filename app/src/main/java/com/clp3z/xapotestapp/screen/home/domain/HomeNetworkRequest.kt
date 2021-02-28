@@ -4,10 +4,11 @@ import com.clp3z.xapotestapp.base.general.Logger
 import com.clp3z.xapotestapp.base.generic.GenericNetworkRequest
 import com.clp3z.xapotestapp.repository.network.client.RetrofitWebservice
 import com.clp3z.xapotestapp.repository.network.schema.RepositoriesResponse
-import com.clp3z.xapotestapp.repository.network.schema.RepositoryResponse
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import retrofit2.HttpException
+import retrofit2.await
 
 /**
  * Created by Clelia López on 02/26/21
@@ -22,34 +23,30 @@ class HomeNetworkRequest(
         logger = Logger(tagClass)
     }
 
-    sealed class Result {
-        class Success(val items: List<RepositoryResponse>): Result()
-        object Failure: Result()
-    }
-
-    suspend fun getRepositories(page: Int): Result {
+    suspend fun getRepositories(page: Int): RepositoriesResponse? {
         val method = "getRepositories"
         return withContext(Dispatchers.IO) {
             try {
+                result = webservice.getRepositories(page).await()
+                return@withContext result
 
-                response = webservice.getRepositories(page)
-
-                if (isResponseValid) {
-                    return@withContext Result.Success(responseBody.items)
-                } else {
-                    logger.log(method, "Error: $responseError")
-                    return@withContext Result.Failure
-                }
             } catch (exception: Throwable) {
-                throwable = exception
-                if (exception !is CancellationException) {
-                    logger.log(method, "Exception: $errorMessage")
-                    return@withContext Result.Failure
-                } else {
-                    logger.log(method, "CancellationException occurred")
-                    throw exception
+                when (exception) {
+                    is CancellationException ->
+                        logger.logWarning(method, "CancellationException occurred")
+
+                    is HttpException -> {
+                        httpException = exception
+                        logger.logError(method, "HttpException: $httpError")
+                    }
+
+                    else -> {
+                        throwable = exception
+                        logger.logError(method, "Exception: $exceptionMessage")
+                    }
                 }
             }
+            return@withContext null
         }
     }
 }

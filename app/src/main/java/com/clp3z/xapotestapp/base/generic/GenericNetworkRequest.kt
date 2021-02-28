@@ -2,7 +2,7 @@ package com.clp3z.xapotestapp.base.generic
 
 import com.clp3z.xapotestapp.base.general.Logger
 import com.clp3z.xapotestapp.repository.network.client.RetrofitWebservice
-import retrofit2.Response
+import retrofit2.HttpException
 
 /**
  * Created by Clelia López on 02/27/21
@@ -14,16 +14,14 @@ abstract class GenericNetworkRequest<T>(
     protected lateinit var tagClass: String
     protected lateinit var logger: Logger
 
-    protected lateinit var response: Response<T>
+    protected var result: T? = null
+    protected lateinit var httpException: HttpException
     protected lateinit var throwable: Throwable
 
-    protected val isResponseValid get() = response.isValid()
-    protected val responseBody get() = response.getBody()
-    protected val responseError get() = response.errorBody()
-    protected val errorMessage get() = throwable.localizedMessage ?: ""
 
+    protected val exceptionMessage
+        get() = throwable.message ?: ""
 
-    private fun <T> Response<T>.isValid() = isSuccessful && body() != null
-
-    private fun <T> Response<T>.getBody() = body()!!
+    protected val httpError
+        get() = httpException.response()?.errorBody()?.string().toString()
 }
