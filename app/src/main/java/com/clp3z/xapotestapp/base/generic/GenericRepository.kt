@@ -20,10 +20,6 @@ abstract class GenericRepository<DAO: GenericDAO<*>, NR: GenericNetworkRequest<*
         CoroutineScope(Dispatchers.Main + job)
     }
 
-    init {
-        this.fetch()
-    }
-
     fun onCleared() {
         job.cancelChildren()
     }

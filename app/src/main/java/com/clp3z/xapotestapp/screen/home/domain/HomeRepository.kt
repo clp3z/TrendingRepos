@@ -25,6 +25,10 @@ class HomeRepository(
 
     private var currentPage = 1
 
+    init {
+        this.fetch()
+    }
+
     override fun fetch() {
         fetchRepositories(currentPage)
     }
@@ -35,12 +39,12 @@ class HomeRepository(
             try {
 
                 // Request
-                val result = networkRequest.getRepositories(page)
+                val resultList = networkRequest.getRepositories(page)
 
-                if (result != null) {
+                if (resultList != null) {
 
                     // Transform and Insert
-                    dao.insertAll(result.items.map { it.toRepository() })
+                    dao.insertAll(resultList.map { it.toRepository() })
 
                     // Expose
                     repositories.value = dao.queryRepositories()

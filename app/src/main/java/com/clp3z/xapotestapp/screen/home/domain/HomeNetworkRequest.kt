@@ -4,6 +4,7 @@ import com.clp3z.xapotestapp.base.general.Logger
 import com.clp3z.xapotestapp.base.generic.GenericNetworkRequest
 import com.clp3z.xapotestapp.repository.network.client.RetrofitWebservice
 import com.clp3z.xapotestapp.repository.network.schema.RepositoriesResponse
+import com.clp3z.xapotestapp.repository.network.schema.RepositoryResponse
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -23,12 +24,12 @@ class HomeNetworkRequest(
         logger = Logger(tagClass)
     }
 
-    suspend fun getRepositories(page: Int): RepositoriesResponse? {
+    suspend fun getRepositories(page: Int): List<RepositoryResponse>? {
         val method = "getRepositories"
         return withContext(Dispatchers.IO) {
             try {
                 result = webservice.getRepositories(page).await()
-                return@withContext result
+                return@withContext result?.items
 
             } catch (exception: Throwable) {
                 when (exception) {

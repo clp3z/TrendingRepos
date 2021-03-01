@@ -34,6 +34,7 @@
                     android:layout_height="100dp"
                     tools:src="@drawable/ic_android"
                     app:imageUrl="@{viewModel.avatar}"
+                    app:placeholder="@{@drawable/placeholder}"
                     app:border_color="@color/colorAccent"
                     app:border_width="2dp"
                     app:layout_constraintEnd_toEndOf="parent"
