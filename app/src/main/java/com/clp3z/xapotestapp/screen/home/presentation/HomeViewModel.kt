@@ -15,8 +15,8 @@ class HomeViewModel(
 ):
     GenericViewModel<HomeModel>(application, homeModel) {
 
-    private val _githubRepositories = model.repositories
-    val githubRepositories: LiveData<List<RepositoryItemQuery>> get() = _githubRepositories
+    private val _repositories = model.repositories
+    val repositories: LiveData<List<RepositoryItemQuery>> get() = _repositories
 
     override fun fetch() {}
     override fun addModelObservers() {}

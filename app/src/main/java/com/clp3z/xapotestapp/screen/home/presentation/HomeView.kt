@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.clp3z.xapotestapp.base.generic.GenericView
 import com.clp3z.xapotestapp.base.interfaces.Listener
 import com.clp3z.xapotestapp.databinding.FragmentHomeBinding
-import com.clp3z.xapotestapp.repository.model.RepositoryItemQuery
 import com.clp3z.xapotestapp.screen.home.HomeFragment
 
 /**
@@ -46,18 +45,15 @@ class HomeView(
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = adapter
 
-        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        binding.recyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener() {
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(binding.recyclerView, newState)
                 val totalItemCount = recyclerView.layoutManager?.itemCount
+
                 if (totalItemCount == lastVisibleItemPosition + 1)
                     listener.onFetchEvent()
             }
         })
-    }
-
-    fun addItems(items: List<RepositoryItemQuery>) {
-        adapter.submitList(items)
     }
 }

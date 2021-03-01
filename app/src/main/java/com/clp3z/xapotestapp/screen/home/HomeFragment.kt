@@ -64,10 +64,6 @@ class HomeFragment
         savedInstanceState: Bundle?
     ): View {
 
-        viewModel.githubRepositories.observe(viewLifecycleOwner, {
-            view.addItems(it)
-        })
-
         view = HomeView(inflater, container, viewModel, this, this)
         return view.root
     }
