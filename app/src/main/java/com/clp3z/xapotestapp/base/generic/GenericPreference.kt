@@ -15,7 +15,7 @@ abstract class GenericPreference<T>(
 
     protected lateinit var preferenceFlow: Flow<T>
 
-    protected val preference = preferenceFlow.asLiveData()
+    protected val preference get() = preferenceFlow.asLiveData()
 
     abstract suspend fun update(value: T)
 }

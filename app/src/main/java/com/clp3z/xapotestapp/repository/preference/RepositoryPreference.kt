@@ -18,8 +18,6 @@ class RepositoryPreference(
         dataStore
     ) {
 
-    val isRepositoryTableEmptyLiveDate = preference
-
     private val IS_REPOSITORY_TABLE_EMPTY =
         booleanPreferencesKey("is_repository_table_empty")
 
@@ -35,5 +33,7 @@ class RepositoryPreference(
             preference[IS_REPOSITORY_TABLE_EMPTY] = value
         }
     }
+
+    val isRepositoryTableEmptyLiveDate = preference
 }
 

@@ -6,7 +6,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.clp3z.xapotestapp.R
 import com.clp3z.xapotestapp.base.general.HomeViewState
+import com.clp3z.xapotestapp.base.general.HomeViewState.*
 import com.clp3z.xapotestapp.repository.model.RepositoryItemQuery
 import com.clp3z.xapotestapp.screen.home.presentation.RepositoryAdapter
 import com.squareup.picasso.Picasso
@@ -26,9 +28,9 @@ fun bindViewVisibility(view: View, isVisible: Boolean?) {
 @BindingAdapter("android:text")
 fun bindTextViewVisibility(textView: TextView, value: String?) {
     if (value == null)
-        textView.visibility = View.GONE
+        textView.visibility = View.INVISIBLE
     else {
-        textView.visibility = if (value.isNotEmpty()) View.VISIBLE else View.GONE
+        textView.visibility = if (value.isNotEmpty()) View.VISIBLE else View.INVISIBLE
         textView.text = value
     }
 }
@@ -45,12 +47,27 @@ fun bindImage(imageView: ImageView, url: String?, placeholder: Drawable) {
 }
 
 @BindingAdapter("app:itemsList")
-fun bindRecyclerView(recyclerView: RecyclerView, itemsList: List<RepositoryItemQuery>?) {
+fun bindRecyclerView(recyclerView: RecyclerView, itemsList: MutableList<RepositoryItemQuery>?) {
     val adapter = recyclerView.adapter as RepositoryAdapter
     adapter.submitList(itemsList)
 }
 
+// Maybe change from viewState to messageState
 @BindingAdapter("app:viewState")
 fun bindViewState(view: View, viewState: HomeViewState) {
+    when (viewState) {
+        DOWNLOADING ->
+            view.visibility = if (view.id == R.id.messageDownloading) View.VISIBLE else View.GONE
 
+        UNKNOWN_ERROR ->
+            view.visibility = if (view.id == R.id.messageError) View.VISIBLE else View.GONE
+
+        NO_INTERNET ->
+            view.visibility = if (view.id == R.id.messageNoConnection) View.VISIBLE else View.GONE
+
+        else -> view.visibility = View.GONE
+    }
 }
+
+// Maybe name is as snackBarState
+// TODO: handle NO_INTERNET_SNACKBAR

@@ -25,10 +25,6 @@ abstract class GenericModel<T> (
         CoroutineScope(Dispatchers.Main + job)
     }
 
-    init {
-        this.fetch()
-    }
-
     open fun onCleared() {
         job.cancel()
     }

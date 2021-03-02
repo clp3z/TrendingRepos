@@ -18,6 +18,9 @@ class RepositoryModel(
     private val _githubRepository = MutableLiveData<RepositoryQuery>()
     val githubRepository: LiveData<RepositoryQuery> get() =  _githubRepository
 
+    init {
+        fetch()
+    }
 
     override fun fetch() {
         modelScope.launch {

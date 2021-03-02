@@ -29,18 +29,21 @@
             android:id="@+id/messageNoConnection"
             layout="@layout/message_no_connection"
             android:visibility="invisible"
+            app:viewState="@{viewModel.viewState}"
             tools:viewBindingIgnore="true"/>
 
         <include
             android:id="@+id/messageError"
             layout="@layout/message_error"
             android:visibility="invisible"
+            app:viewState="@{viewModel.viewState}"
             tools:viewBindingIgnore="true"/>
 
         <include
             android:id="@+id/messageDownloading"
             layout="@layout/message_downloading"
             android:visibility="invisible"
+            app:viewState="@{viewModel.viewState}"
             tools:viewBindingIgnore="true" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

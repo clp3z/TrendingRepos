@@ -9,7 +9,6 @@ import com.clp3z.xapotestapp.base.general.RepositoryState.*
 import com.clp3z.xapotestapp.base.generic.GenericRepository
 import com.clp3z.xapotestapp.base.util.isInternetConnectionAvailable
 import com.clp3z.xapotestapp.base.util.toRepository
-import com.clp3z.xapotestapp.base.util.toRepositoryItemQuery
 import com.clp3z.xapotestapp.repository.model.RepositoryItemQuery
 import com.clp3z.xapotestapp.repository.preference.RepositoryPreference
 import kotlinx.coroutines.launch
@@ -48,10 +47,10 @@ class HomeRepository(
     init {
         tableStateObserver = Observer<Boolean> {
             isRepositoryTableEmpty = it
+            fetch()
         }
-        tableStateLiveDate.observeForever(tableStateObserver)
 
-        this.fetch()
+        tableStateLiveDate.observeForever(tableStateObserver)
     }
 
     override fun fetch() {
@@ -69,14 +68,12 @@ class HomeRepository(
 
                     if (resultList != null) {
 
-                        // Transform and Expose
-                        repositories.value = resultList
-                            .map { it.toRepository() }
-                            .map { it.toRepositoryItemQuery() }
-
-                        // Insert on background
+                        // Transform and insert
                         dao.insertAll(resultList
                             .map { it.toRepository() })
+
+                        // Query and expose
+                        repositories.value = dao.queryRepositories()
 
                         // Notify update
                         _repositoryState.value = DATA_UPDATED_FROM_NETWORK
