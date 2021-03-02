@@ -15,7 +15,7 @@ class DataStoreClient(context: Context) {
     private val Context.dataStore: DataStore<Preferences> by
         preferencesDataStore(name = PREFERENCES_NAME)
 
-    val dataStoreInstance: DataStore<Preferences> by lazy {
+    val dataStore: DataStore<Preferences> by lazy {
         context.dataStore
     }
 }

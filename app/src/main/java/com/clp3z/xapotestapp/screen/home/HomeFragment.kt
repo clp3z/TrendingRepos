@@ -15,6 +15,8 @@ import com.clp3z.xapotestapp.MainActivity
 import com.clp3z.xapotestapp.repository.database.client.LocalDatabase
 import com.clp3z.xapotestapp.repository.database.client.RepositoryRoomDAO
 import com.clp3z.xapotestapp.repository.network.client.RetrofitClient
+import com.clp3z.xapotestapp.repository.preference.DataStoreClient
+import com.clp3z.xapotestapp.repository.preference.RepositoryPreference
 import com.clp3z.xapotestapp.screen.home.domain.HomeDAO
 import com.clp3z.xapotestapp.screen.home.domain.HomeModel
 import com.clp3z.xapotestapp.screen.home.domain.HomeRepository
@@ -31,10 +33,12 @@ class HomeFragment
 
     private lateinit var application: XapoApplication
     private lateinit var repositoryRoomDAO: RepositoryRoomDAO
-    private val webservice = RetrofitClient.WEBSERVICE
+    private val webservice = RetrofitClient.webservice
 
     private lateinit var dao: HomeDAO
     private lateinit var networkRequest: HomeNetworkRequest
+    private lateinit var dataStoreClient: DataStoreClient
+    private lateinit var repositoryPreference: RepositoryPreference
     private lateinit var repository: HomeRepository
     private lateinit var model: HomeModel
 
@@ -52,7 +56,9 @@ class HomeFragment
 
         dao = HomeDAO(repositoryRoomDAO)
         networkRequest = HomeNetworkRequest(webservice)
-        repository = HomeRepository(application, dao, networkRequest)
+        dataStoreClient = DataStoreClient(application)
+        repositoryPreference = RepositoryPreference(dataStoreClient.dataStore)
+        repository = HomeRepository(application, dao, networkRequest, repositoryPreference)
         model = HomeModel(repository)
 
         viewModelFactory = ViewModelFactory(application, model)

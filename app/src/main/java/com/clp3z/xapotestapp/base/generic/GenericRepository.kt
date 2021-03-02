@@ -18,11 +18,11 @@ abstract class GenericRepository<DAO: GenericDAO<*>, NR: GenericNetworkRequest<*
         Job()
     }
 
-    protected val uiScope: CoroutineScope by lazy {
+    protected val repositoryScope: CoroutineScope by lazy {
         CoroutineScope(Dispatchers.Main + job)
     }
 
-    fun onCleared() {
+    open fun onCleared() {
         job.cancelChildren()
     }
 }

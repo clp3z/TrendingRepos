@@ -21,7 +21,7 @@ abstract class GenericModel<T> (
         Job()
     }
 
-    protected val uiScope: CoroutineScope by lazy {
+    protected val modelScope: CoroutineScope by lazy {
         CoroutineScope(Dispatchers.Main + job)
     }
 

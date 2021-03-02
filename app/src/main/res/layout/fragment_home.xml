@@ -32,12 +32,6 @@
             tools:viewBindingIgnore="true"/>
 
         <include
-            android:id="@+id/messageNoDatabase"
-            layout="@layout/message_no_database"
-            android:visibility="invisible"
-            tools:viewBindingIgnore="true"/>
-
-        <include
             android:id="@+id/messageError"
             layout="@layout/message_error"
             android:visibility="invisible"
@@ -47,8 +41,6 @@
             android:id="@+id/messageDownloading"
             layout="@layout/message_downloading"
             android:visibility="invisible"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="320dp"
             tools:viewBindingIgnore="true" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

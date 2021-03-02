@@ -1,24 +1,37 @@
 package com.clp3z.xapotestapp.base.general
 
 /**
- * Created by Clelia López on 10/19/20
+ * Created by Clelia López on 3/2/20
  */
 
-enum class ModelState {
+enum class RepositoryState {
 
-    // No internet connection detected when performing network request
-    NO_INTERNET,
+    // Internet - Request successful
+    DATA_UPDATED_FROM_NETWORK,
 
-    // Room database does not exist yet.
-    // A network request will be performed and the data will later on be stored on it
-    LOADING,
+    // No Internet - Updated from database
+    DATA_UPDATED_FROM_DATABASE,
 
-    // Downloading more items into the database for infinite scrolling
+    // No internet - No database
+    DATA_EMPTY,
+
+    // Unknown error on server side
+   DATA_ERROR
+}
+
+enum class HomeViewState {
+
+    // Downloading dialog
     DOWNLOADING,
 
-    // Room database exits, so data will be loaded from it
-    AVAILABLE,
+    // Error message view
+    UNKNOWN_ERROR,
 
-    // Unknown error
-    ERROR
+    // No internet message view
+    NO_INTERNET,
+
+    // Snack with Retry action
+    NO_INTERNET_SNACKBAR,
+
+    ACTIVE
 }

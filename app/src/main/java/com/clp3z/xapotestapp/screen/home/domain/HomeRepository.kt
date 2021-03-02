@@ -1,12 +1,17 @@
 package com.clp3z.xapotestapp.screen.home.domain
 
 import android.app.Application
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import com.clp3z.xapotestapp.base.general.RepositoryState
+import com.clp3z.xapotestapp.base.general.RepositoryState.*
 import com.clp3z.xapotestapp.base.generic.GenericRepository
 import com.clp3z.xapotestapp.base.util.isInternetConnectionAvailable
 import com.clp3z.xapotestapp.base.util.toRepository
 import com.clp3z.xapotestapp.base.util.toRepositoryItemQuery
 import com.clp3z.xapotestapp.repository.model.RepositoryItemQuery
+import com.clp3z.xapotestapp.repository.preference.RepositoryPreference
 import kotlinx.coroutines.launch
 
 /**
@@ -17,6 +22,7 @@ class HomeRepository(
     application: Application,
     dao: HomeDAO,
     networkRequest: HomeNetworkRequest,
+    private val repositoryPreference: RepositoryPreference
 ):
     GenericRepository<HomeDAO, HomeNetworkRequest>(
         application,
@@ -24,55 +30,88 @@ class HomeRepository(
         networkRequest
     ) {
 
+    private val _repositoryState = MutableLiveData<RepositoryState>()
+    val repositoryState: LiveData<RepositoryState> get() =  _repositoryState
+
     var repositories = MutableLiveData<List<RepositoryItemQuery>>()
 
     private var currentPage = 1
 
+    private var tableStateObserver: Observer<Boolean>
+
+    private val tableStateLiveDate = repositoryPreference.isRepositoryTableEmptyLiveDate
+
+    private val isInternetAvailable = isInternetConnectionAvailable(application)
+    private var isRepositoryTableEmpty = true
+
+
     init {
+        tableStateObserver = Observer<Boolean> {
+            isRepositoryTableEmpty = it
+        }
+        tableStateLiveDate.observeForever(tableStateObserver)
+
         this.fetch()
     }
 
     override fun fetch() {
-        if (isInternetConnectionAvailable(application))
-            fetchRepositories(currentPage)
-        else
-            onNoInternetConnection()
+        fetchRepositories(currentPage)
     }
 
     private fun fetchRepositories(page: Int) {
-        uiScope.launch {
-            // TODO: show download dialog
+        repositoryScope.launch {
 
-            // Request
-            val resultList = networkRequest.getRepositories(page)
+            when {
+                isInternetAvailable -> {
 
-            if (resultList != null) {
+                    // Request
+                    val resultList = networkRequest.getRepositories(page)
 
-                // Transform and Expose
-                repositories.value = resultList
-                    .map { it.toRepository() }
-                    .map { it.toRepositoryItemQuery() }
+                    if (resultList != null) {
 
-                // Insert on Background
-                dao.insertAll(resultList
-                    .map { it.toRepository() })
+                        // Transform and Expose
+                        repositories.value = resultList
+                            .map { it.toRepository() }
+                            .map { it.toRepositoryItemQuery() }
 
-                // data store true
+                        // Insert on background
+                        dao.insertAll(resultList
+                            .map { it.toRepository() })
 
-            } else {
-                onFetchFailed()
+                        // Notify update
+                        _repositoryState.value = DATA_UPDATED_FROM_NETWORK
+
+                        // Update preference
+                        repositoryPreference.update(false)
+
+                    } else {
+
+                        // Unknown error while performing network request
+                        _repositoryState.value = DATA_ERROR
+                    }
+                }
+
+                !isInternetAvailable && isRepositoryTableEmpty -> {
+
+                    // Notify that there is no data
+                    _repositoryState.value = DATA_EMPTY
+                }
+
+                !isInternetAvailable && !isRepositoryTableEmpty -> {
+
+                    // Query and expose
+                    repositories.value = dao.queryRepositories()
+
+                    // Notify update, but no internet
+                    _repositoryState.value = DATA_UPDATED_FROM_DATABASE
+                }
             }
         }
         currentPage += 1
     }
 
-    override fun onFetchFailed() {
-        // TODO: report to Business Logic Layer so an appropriate action can be done
-    }
-
-    override fun onNoInternetConnection() {
-        uiScope.launch {
-            repositories.value = dao.queryRepositories()
-        }
+    override fun onCleared() {
+        tableStateLiveDate.removeObserver(tableStateObserver)
+        super.onCleared()
     }
 }

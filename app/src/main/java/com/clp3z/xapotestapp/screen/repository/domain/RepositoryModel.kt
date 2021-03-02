@@ -20,7 +20,7 @@ class RepositoryModel(
 
 
     override fun fetch() {
-        uiScope.launch {
+        modelScope.launch {
             _githubRepository.value = dataLayer.getRepositoryById(id)
         }
     }

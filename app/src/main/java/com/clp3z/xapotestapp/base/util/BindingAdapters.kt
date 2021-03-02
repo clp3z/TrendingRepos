@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.clp3z.xapotestapp.base.general.HomeViewState
 import com.clp3z.xapotestapp.repository.model.RepositoryItemQuery
 import com.clp3z.xapotestapp.screen.home.presentation.RepositoryAdapter
 import com.squareup.picasso.Picasso
@@ -47,4 +48,9 @@ fun bindImage(imageView: ImageView, url: String?, placeholder: Drawable) {
 fun bindRecyclerView(recyclerView: RecyclerView, itemsList: List<RepositoryItemQuery>?) {
     val adapter = recyclerView.adapter as RepositoryAdapter
     adapter.submitList(itemsList)
+}
+
+@BindingAdapter("app:viewState")
+fun bindViewState(view: View, viewState: HomeViewState) {
+
 }

@@ -12,7 +12,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
  */
 object RetrofitClient {
 
-    val WEBSERVICE: RetrofitWebservice by lazy {
+    val webservice: RetrofitWebservice by lazy {
         getRetrofit(getOkHttpClient(getInterceptor())).create(RetrofitWebservice::class.java)
     }
 

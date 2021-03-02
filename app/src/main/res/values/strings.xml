@@ -25,7 +25,7 @@
     <string name="image_no_database">No database icon</string>
 
     <!-- message_error.xml -->
-    <string name="label_error">Error</string>
+    <string name="label_error">Unknown Error</string>
     <string name="label_error_info">Unknown error encountered. \n\nWe\'re looking at this issue now. \n\nPlease try again later!</string>
     <string name="image_error">Error icon</string>
 
