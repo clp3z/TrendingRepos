@@ -8,7 +8,7 @@ import android.os.Build
 /**
  * Created by Clelia López on 02/26/21
  */
-fun isInternetAvailable(context: Context): Boolean {
+fun isInternetConnectionAvailable(context: Context): Boolean {
     var result = false
     val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 

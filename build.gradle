@@ -17,15 +17,19 @@ buildscript {
 
         // ViewModel and LiveData
         lifecycle_extensions_version = "2.2.0"
+        livedata_extensions_version = "2.3.0"
 
         // Room
         room_version = "2.2.6"
+
+        // DataStore
+        datastore_version = "1.0.0-alpha07"
 
         // Coroutines
         coroutines_version = "1.4.2"
 
         // Retrofit + OkHttp + Moshi
-        retrofit_version = "2.6.2"
+        retrofit_version = "2.9.0"
         okhttp_version = "4.5.0"
         moshi_version = "1.11.0"
 

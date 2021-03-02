@@ -11,8 +11,8 @@ sealed class Navigation {
 
     abstract fun from(fragment: Fragment)
 
-    // HomeFragment -> RepoFragment
-    data class ToRepoFragment(val id: Int) : Navigation() {
+
+    data class ToRepositoryFragment(val id: Int) : Navigation() {
 
         override fun from(fragment: Fragment) {
             fragment

@@ -20,7 +20,7 @@ abstract class GenericNetworkRequest<T>(
 
 
     protected val exceptionMessage
-        get() = throwable.message ?: ""
+        get() = throwable.localizedMessage ?: ""
 
     protected val httpError
         get() = httpException.response()?.errorBody()?.string().toString()

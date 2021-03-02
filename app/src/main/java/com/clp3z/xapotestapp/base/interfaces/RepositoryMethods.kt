@@ -5,4 +5,6 @@ interface RepositoryMethods {
     fun fetch()
 
     fun onFetchFailed()
+
+    fun onNoInternetConnection()
 }

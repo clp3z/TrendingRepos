@@ -1,8 +1,11 @@
 package com.clp3z.xapotestapp.screen.home.domain
 
+import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.clp3z.xapotestapp.base.generic.GenericRepository
+import com.clp3z.xapotestapp.base.util.isInternetConnectionAvailable
 import com.clp3z.xapotestapp.base.util.toRepository
+import com.clp3z.xapotestapp.base.util.toRepositoryItemQuery
 import com.clp3z.xapotestapp.repository.model.RepositoryItemQuery
 import kotlinx.coroutines.launch
 
@@ -11,15 +14,15 @@ import kotlinx.coroutines.launch
  */
 @Suppress("MoveVariableDeclarationIntoWhen")
 class HomeRepository(
+    application: Application,
     dao: HomeDAO,
-    networkRequest: HomeNetworkRequest
+    networkRequest: HomeNetworkRequest,
 ):
     GenericRepository<HomeDAO, HomeNetworkRequest>(
+        application,
         dao,
         networkRequest
     ) {
-
-    // TODO: internet state verification pending
 
     var repositories = MutableLiveData<List<RepositoryItemQuery>>()
 
@@ -30,30 +33,34 @@ class HomeRepository(
     }
 
     override fun fetch() {
-        fetchRepositories(currentPage)
+        if (isInternetConnectionAvailable(application))
+            fetchRepositories(currentPage)
+        else
+            onNoInternetConnection()
     }
 
     private fun fetchRepositories(page: Int) {
         uiScope.launch {
             // TODO: show download dialog
-            try {
 
-                // Request
-                val resultList = networkRequest.getRepositories(page)
+            // Request
+            val resultList = networkRequest.getRepositories(page)
 
-                if (resultList != null) {
+            if (resultList != null) {
 
-                    // Transform and Insert
-                    dao.insertAll(resultList.map { it.toRepository() })
+                // Transform and Expose
+                repositories.value = resultList
+                    .map { it.toRepository() }
+                    .map { it.toRepositoryItemQuery() }
 
-                    // Expose
-                    repositories.value = dao.queryRepositories()
+                // Insert on Background
+                dao.insertAll(resultList
+                    .map { it.toRepository() })
 
-                } else {
-                    onFetchFailed()
-                }
-            } finally {
-                // TODO: hide download dialog
+                // data store true
+
+            } else {
+                onFetchFailed()
             }
         }
         currentPage += 1
@@ -61,5 +68,11 @@ class HomeRepository(
 
     override fun onFetchFailed() {
         // TODO: report to Business Logic Layer so an appropriate action can be done
+    }
+
+    override fun onNoInternetConnection() {
+        uiScope.launch {
+            repositories.value = dao.queryRepositories()
+        }
     }
 }

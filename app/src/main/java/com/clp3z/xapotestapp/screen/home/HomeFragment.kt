@@ -52,7 +52,7 @@ class HomeFragment
 
         dao = HomeDAO(repositoryRoomDAO)
         networkRequest = HomeNetworkRequest(webservice)
-        repository = HomeRepository(dao, networkRequest)
+        repository = HomeRepository(application, dao, networkRequest)
         model = HomeModel(repository)
 
         viewModelFactory = ViewModelFactory(application, model)
@@ -73,6 +73,6 @@ class HomeFragment
     }
 
     override fun onItemSelected(id: Int) {
-        Navigation.ToRepoFragment(id).from(this)
+        Navigation.ToRepositoryFragment(id).from(this)
     }
 }
