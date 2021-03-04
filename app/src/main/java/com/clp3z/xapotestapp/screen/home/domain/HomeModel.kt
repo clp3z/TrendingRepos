@@ -29,17 +29,23 @@ class HomeModel(
 
     override fun fetch() {
 
-        viewState.value = DOWNLOADING
+        viewState.value = INITIAL_DOWNLOAD
 
         repositoryStateObserver = Observer<RepositoryState> { state ->
             when (state) {
+
+                DATA_DOWNLOADING -> viewState.value = DOWNLOADING
+
                 DATA_UPDATED_FROM_NETWORK -> viewState.value = ACTIVE
 
                 DATA_UPDATED_FROM_DATABASE -> viewState.value = NO_INTERNET_SNACKBAR
 
-                DATA_EMPTY -> viewState.value = NO_INTERNET
+                DATA_EMPTY_REQUEST_ERROR -> viewState.value = UNKNOWN_ERROR
 
-                else -> viewState.value = UNKNOWN_ERROR
+                DATA_ERROR_WITH_DATA -> viewState.value = SUBSEQUENT_UNKNOWN_ERROR
+
+                // DATA_EMPTY_NO_INTERNET
+                else -> viewState.value = NO_INTERNET
             }
         }
 

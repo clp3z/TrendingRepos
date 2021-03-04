@@ -74,8 +74,12 @@ class HomeFragment
         return view.root
     }
 
-    override fun onFetchEvent() {
-        repository.fetch()
+    override fun onViewScroll(
+        visibleItemCount: Int,
+        totalItemCount: Int,
+        firstVisibleItemPosition: Int,
+    ) {
+        repository.fetch(visibleItemCount, totalItemCount, firstVisibleItemPosition)
     }
 
     override fun onItemSelected(id: Int) {

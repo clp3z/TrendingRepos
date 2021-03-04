@@ -12,12 +12,13 @@ import com.clp3z.xapotestapp.screen.home.HomeFragment
 /**
  * Created by Clelia López on 02/26/21
  */
+
 class HomeView(
     layoutInflater: LayoutInflater,
     container: ViewGroup?,
     viewModel: HomeViewModel,
     fragment: HomeFragment,
-    private val listener: Listener.HomeViewListener
+    private val listener: Listener.HomeViewListener,
 ):
     GenericView<FragmentHomeBinding, HomeViewModel>(
         layoutInflater,
@@ -32,9 +33,6 @@ class HomeView(
 
     private val layoutManager = LinearLayoutManager(fragment.requireContext())
 
-    private val lastVisibleItemPosition get() = layoutManager.findLastVisibleItemPosition()
-
-
     override fun initialize() {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         binding.viewModel = viewModel
@@ -45,14 +43,15 @@ class HomeView(
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = adapter
 
-        binding.recyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+        binding.recyclerView.addOnScrollListener(
+            object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val visibleItemCount = layoutManager.childCount
+                val totalItemCount = layoutManager.itemCount
+                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
 
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(binding.recyclerView, newState)
-                val totalItemCount = recyclerView.layoutManager?.itemCount
-
-                if (totalItemCount == lastVisibleItemPosition + 1)
-                    listener.onFetchEvent()
+                listener.onViewScroll(visibleItemCount, totalItemCount, firstVisibleItemPosition)
             }
         })
     }

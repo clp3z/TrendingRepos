@@ -18,33 +18,62 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp"
+            android:layout_height="0dp"
             android:clipToPadding="false"
+            android:padding="16dp"
             app:itemsList="@{viewModel.repositories}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/loading"
             tools:itemCount="10"
             tools:listitem="@layout/list_item"/>
 
         <include
-            android:id="@+id/messageNoConnection"
-            layout="@layout/message_no_connection"
-            android:visibility="invisible"
+            android:id="@+id/loading"
+            layout="@layout/list_loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
             app:viewState="@{viewModel.viewState}"
-            tools:viewBindingIgnore="true"/>
-
-        <include
-            android:id="@+id/messageError"
-            layout="@layout/message_error"
-            android:visibility="invisible"
-            app:viewState="@{viewModel.viewState}"
-            tools:viewBindingIgnore="true"/>
+            tools:viewBindingIgnore="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
         <include
             android:id="@+id/messageDownloading"
             layout="@layout/message_downloading"
             android:visibility="invisible"
             app:viewState="@{viewModel.viewState}"
-            tools:viewBindingIgnore="true" />
+            tools:viewBindingIgnore="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <include
+            android:id="@+id/messageNoConnection"
+            layout="@layout/message_no_connection"
+            android:visibility="invisible"
+            app:viewState="@{viewModel.viewState}"
+            tools:viewBindingIgnore="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <include
+            android:id="@+id/messageError"
+            layout="@layout/message_error"
+            android:visibility="invisible"
+            app:viewState="@{viewModel.viewState}"
+            tools:viewBindingIgnore="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

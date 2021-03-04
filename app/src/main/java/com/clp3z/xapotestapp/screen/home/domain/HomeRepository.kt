@@ -12,10 +12,13 @@ import com.clp3z.xapotestapp.base.util.toRepository
 import com.clp3z.xapotestapp.repository.model.RepositoryItemQuery
 import com.clp3z.xapotestapp.repository.preference.RepositoryPreference
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 /**
  * Created by Clelia López on 02/26/21
  */
+
+private const val PAGE_SIZE = 10
 @Suppress("MoveVariableDeclarationIntoWhen")
 class HomeRepository(
     application: Application,
@@ -43,28 +46,51 @@ class HomeRepository(
     private val isInternetAvailable = isInternetConnectionAvailable(application)
     private var isRepositoryTableEmpty = true
 
+    private var isFirstCall = true
+    var isLoading = false
 
     init {
         tableStateObserver = Observer<Boolean> {
             isRepositoryTableEmpty = it
-            fetch()
+            if (isFirstCall) {
+                fetchRepositories()
+                isFirstCall = false
+            }
         }
 
         tableStateLiveDate.observeForever(tableStateObserver)
     }
 
-    override fun fetch() {
-        fetchRepositories(currentPage)
+    override fun fetch(
+        visibleItemCount: Int,
+        totalItemCount: Int,
+        firstVisibleItemPosition: Int,
+    ) {
+        if (!isLoading) {
+            if (visibleItemCount + firstVisibleItemPosition >= totalItemCount &&
+                firstVisibleItemPosition >= 0
+                && totalItemCount >= PAGE_SIZE) {
+
+                runBlocking {
+                    fetchRepositories()
+                }
+
+                isLoading = false
+            }
+        }
     }
 
-    private fun fetchRepositories(page: Int) {
-        repositoryScope.launch {
+    private fun fetchRepositories() {
 
+        repositoryScope.launch {
             when {
                 isInternetAvailable -> {
 
+                    if (currentPage > 1)
+                        _repositoryState.value = DATA_DOWNLOADING
+
                     // Request
-                    val resultList = networkRequest.getRepositories(page)
+                    val resultList = networkRequest.getRepositories(currentPage)
 
                     if (resultList != null) {
 
@@ -81,17 +107,23 @@ class HomeRepository(
                         // Update preference
                         repositoryPreference.update(false)
 
+                        // Set next page for next request
+                        currentPage += 1
+
                     } else {
 
                         // Unknown error while performing network request
-                        _repositoryState.value = DATA_ERROR
+                        if (isRepositoryTableEmpty)
+                            _repositoryState.value = DATA_EMPTY_REQUEST_ERROR
+                        else
+                            _repositoryState.value = DATA_ERROR_WITH_DATA
                     }
                 }
 
                 !isInternetAvailable && isRepositoryTableEmpty -> {
 
                     // Notify that there is no data
-                    _repositoryState.value = DATA_EMPTY
+                    _repositoryState.value = DATA_EMPTY_NO_INTERNET
                 }
 
                 !isInternetAvailable && !isRepositoryTableEmpty -> {
@@ -104,7 +136,6 @@ class HomeRepository(
                 }
             }
         }
-        currentPage += 1
     }
 
     override fun onCleared() {

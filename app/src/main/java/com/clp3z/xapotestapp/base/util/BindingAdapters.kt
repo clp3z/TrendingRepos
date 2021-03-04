@@ -56,7 +56,7 @@ fun bindRecyclerView(recyclerView: RecyclerView, itemsList: MutableList<Reposito
 @BindingAdapter("app:viewState")
 fun bindViewState(view: View, viewState: HomeViewState) {
     when (viewState) {
-        DOWNLOADING ->
+        INITIAL_DOWNLOAD ->
             view.visibility = if (view.id == R.id.messageDownloading) View.VISIBLE else View.GONE
 
         UNKNOWN_ERROR ->
@@ -65,9 +65,14 @@ fun bindViewState(view: View, viewState: HomeViewState) {
         NO_INTERNET ->
             view.visibility = if (view.id == R.id.messageNoConnection) View.VISIBLE else View.GONE
 
+        DOWNLOADING ->
+            view.visibility = if (view.id == R.id.loading) View.VISIBLE else View.GONE
+
+        // ACTIVE
         else -> view.visibility = View.GONE
     }
 }
+
 
 // Maybe name is as snackBarState
 // TODO: handle NO_INTERNET_SNACKBAR

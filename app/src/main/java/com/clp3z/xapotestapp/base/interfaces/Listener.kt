@@ -6,7 +6,13 @@ package com.clp3z.xapotestapp.base.interfaces
 interface Listener {
 
     interface HomeViewListener {
-        fun onFetchEvent()
+
+        fun onViewScroll(
+            visibleItemCount: Int,
+            totalItemCount: Int,
+            firstVisibleItemPosition: Int
+        )
+
         fun onItemSelected(id: Int)
     }
 }

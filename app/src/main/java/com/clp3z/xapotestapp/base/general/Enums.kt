@@ -6,6 +6,9 @@ package com.clp3z.xapotestapp.base.general
 
 enum class RepositoryState {
 
+    // Internet- Performing network request
+    DATA_DOWNLOADING,
+
     // Internet - Request successful
     DATA_UPDATED_FROM_NETWORK,
 
@@ -13,19 +16,27 @@ enum class RepositoryState {
     DATA_UPDATED_FROM_DATABASE,
 
     // No internet - No database
-    DATA_EMPTY,
+    DATA_EMPTY_NO_INTERNET,
 
-    // Unknown error on server side
-   DATA_ERROR
+    // Error on server side - No database
+   DATA_EMPTY_REQUEST_ERROR,
+
+   // Error on subsequent network call
+   DATA_ERROR_WITH_DATA
 }
 
 enum class HomeViewState {
+
+    INITIAL_DOWNLOAD,
 
     // Downloading dialog
     DOWNLOADING,
 
     // Error message view
     UNKNOWN_ERROR,
+
+    // Error message on subsequent call
+    SUBSEQUENT_UNKNOWN_ERROR,
 
     // No internet message view
     NO_INTERNET,
