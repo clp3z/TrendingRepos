@@ -71,11 +71,7 @@ class HomeRepository(
                 firstVisibleItemPosition >= 0
                 && totalItemCount >= PAGE_SIZE) {
 
-                runBlocking {
-                    fetchRepositories()
-                }
-
-                isLoading = false
+               fetchRepositories()
             }
         }
     }
@@ -85,6 +81,8 @@ class HomeRepository(
         repositoryScope.launch {
             when {
                 isInternetAvailable -> {
+
+                    isLoading = true
 
                     if (currentPage > 1)
                         _repositoryState.value = DATA_DOWNLOADING
@@ -110,6 +108,8 @@ class HomeRepository(
                         // Set next page for next request
                         currentPage += 1
 
+                        isLoading = false
+
                     } else {
 
                         // Unknown error while performing network request
@@ -117,6 +117,8 @@ class HomeRepository(
                             _repositoryState.value = DATA_EMPTY_REQUEST_ERROR
                         else
                             _repositoryState.value = DATA_ERROR_WITH_DATA
+
+                        isLoading = false
                     }
                 }
 
@@ -124,6 +126,8 @@ class HomeRepository(
 
                     // Notify that there is no data
                     _repositoryState.value = DATA_EMPTY_NO_INTERNET
+
+                    isLoading = false
                 }
 
                 !isInternetAvailable && !isRepositoryTableEmpty -> {
@@ -133,6 +137,8 @@ class HomeRepository(
 
                     // Notify update, but no internet
                     _repositoryState.value = DATA_UPDATED_FROM_DATABASE
+
+                    isLoading = false
                 }
             }
         }
